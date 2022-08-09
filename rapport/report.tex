@@ -1,0 +1,2225 @@
+%% Basierend auf einer TeXnicCenter-Vorlage von Tino Weinkauf.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HEADER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt]{report}
+% Alternative Optionen:
+%	Papiergröße: a4paper / a5paper / b5paper / letterpaper / legalpaper / executivepaper
+% Duplex: oneside / twoside
+% Grundlegende Fontgrößen: 10pt / 11pt / 12pt
+
+
+%% Deutsche Anpassungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+
+\usepackage{lmodern} %Type1-Schriftart für nicht-englische Texte
+
+
+%% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx} %%Zum Laden von Grafiken
+%\usepackage{subfig} %%Teilabbildungen in einer Abbildung
+%\usepackage{pst-all} %%PSTricks - nicht verwendbar mit pdfLaTeX
+
+%% Beachten Sie:
+%% Die Einbindung einer Grafik erfolgt mit \includegraphics{Dateiname}
+%% bzw. über den Dialog im Einfügen-Menü.
+%% 
+%% Im Modus "LaTeX => PDF" können Sie u.a. folgende Grafikformate verwenden:
+%%   .jpg  .png  .pdf  .mps
+%% 
+%% In den Modi "LaTeX => DVI", "LaTeX => PS" und "LaTeX => PS => PDF"
+%% können Sie u.a. folgende Grafikformate verwenden:
+%%   .eps  .ps  .bmp  .pict  .pntg
+
+
+%% Packages für Formeln %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\usepackage[french]{babel}
+\usepackage{fullpage}
+\usepackage{eso-pic}
+\usepackage{textcomp}
+%\begin{center}
+\usepackage{multirow}
+\usepackage{cite}
+%\end{center}
+\usepackage{url} 
+\usepackage{enumitem}
+\usepackage{fullpage}
+%\usepackage[top=3.0cm]{geometry}
+\usepackage[top=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float,caption}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=3,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+\graphicspath{ {./images/} }
+
+
+%% Zeilenabstand %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{setspace}
+%\singlespacing        %% 1-zeilig (Standard)
+%\onehalfspacing       %% 1,5-zeilig
+%\doublespacing        %% 2-zeilig
+
+
+%% Andere Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{a4wide} %%Kleinere Seitenränder = mehr Text pro Zeile.
+%\usepackage{fancyhdr} %%Fancy Kopf- und Fußzeilen
+%\usepackage{longtable} %%Für Tabellen, die eine Seite überschreiten
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Anmerkungen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Zu erledigen:
+% 1. Passen Sie die Packages und deren Optionen an (siehe oben).
+% 2. Wenn Sie wollen, erstellen Sie eine BibTeX-Datei
+%    (z.B. 'literatur.bib').
+% 3. Happy TeXing!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optionen / Modifikationen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{optionen} %Eine Datei 'optionen.tex' wird hierfür benötigt.
+%% ==> TeXnicCenter liefert mögliche Optionendateien
+%% ==> im Vorlagenarchiv mit (Datei | Neu von Vorlage...).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOKUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{dedication}
+  {%\clearpage           % we want a new page          %% I commented this
+   \thispagestyle{empty}% no header and footer
+   % some space at the top
+   \itshape             % the text is in italics
+    \Large       % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+  }
+	
+	
+	\onehalfspacing
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\pagestyle{fancy}
+\fancyhead[L]{\nouppercase\leftmark}
+\fancyhead[R]{}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\geometry{headsep=1cm}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
+\newcommand\AtUpperLeftCorner[3]{%
+  \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
+}
+\newcommand\AtUpperRightCorner[3]{%
+  \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
+}
+
+\begin{document}
+%\pagestyle{empty} %%Keine Kopf-/Fusszeilen auf den ersten Seiten.
+\begin{singlespace}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+    \enlargethispage{2cm}
+ 
+    \AddToShipoutPicture{
+       \AtUpperLeftCorner{1.5cm}{2.5cm}{\includegraphics[width=2cm]{logo_iset_rades}}
+       \AtUpperRightCorner{1.5cm}{2.5cm}{\includegraphics[width=2cm]{schoolupgrader}}
+      }
+		\begin{center}
+		\bf
+		\begin{tabular}{c}
+		\small
+		Ministère de l'Enseignement Supérieur et de la Recherche\\
+		Scientifique\\
+		Direction Générale des Etudes Technologiques\\ \\
+		Institut Supérieur des Etudes Technologiques de Radès\\ 
+		Département Technologies de l'Informatique
+		\end{tabular}
+		\end{center}
+		
+		\vspace{2cm}
+			
+		
+ 
+		\begin{center}
+			\bf
+			\Large
+			\vspace{1.5cm}
+			Rapport de
+		\end{center}
+		
+		\begin{center}
+		\bf
+		\huge
+			PROJET DE FIN D'ETUDES
+		\end{center}
+		
+		\begin{center}
+		\bf
+			Présenté en vue de l'obtention du diplôme de
+		\end{center}
+
+		\begin{center}
+		 \bf
+			\large
+			Master Professionnel en Business Intelligence
+		\end{center}
+		
+		\begin{center}
+		  \large
+			\bf
+			Parcours: MPBI \\ 
+			Application de reconnaissance automatique de produits \\( \begin{bf} Tensorflow \& OpenCV\end{bf} )
+		\end{center}
+		\begin{center}
+			\bf
+			\vspace{1.5cm}
+			Elaboré par:\\
+			Laby Damaro Camara
+		\end{center}
+		\begin{center}
+			\bf
+			\vspace{1cm}
+			Encadré par:\\
+			Mme Hind Elouedi
+		\end{center}
+		\begin{center}
+			\bf
+			\vspace{1cm}
+			Effectué à:\\
+			Entreprise: SchoolUpgrader \\
+			Encadrant: M. Khalil Ben Zineb
+		\end{center}	
+		\begin{center}
+			\bf
+			\vspace{1cm}
+			Période: Fev - Juin 2022
+		\end{center}	
+		\begin{center}
+			\bf
+			\vspace{2cm}
+			Année Universitaire: 2021/2022
+		\end{center}
+			
+\end{titlepage}
+\ClearShipoutPicture
+
+\end{singlespace}
+
+\newpage
+
+\begin{dedication}
+\vspace{5.8cm}
+	%\usefont{T1}{LobsterTwo-LF}{bx}{it}
+		\begin{center}
+		\large
+			Du plus profond de mon c\oe{}ur, je dédie ce travail à tous ceux qui me sont chers,
+		\end{center}
+		
+	\begin{center}
+	   \Huge{ A mes chers parents }
+	\end{center}
+	\begin{center}
+		\large{Aucune dédicace ne saurait exprimer mon respect, mon amour éternel et ma considération pour les sacrifices que vous avez consentis pour mon instruction et mon bien-être.\\ Je vous remercie pour tout le soutien et l'amour que vous me portez depuis mon enfance et j'espère que vos bénédictions m'accompagneront pour toujours.\\
+Que ce modeste travail soit l'exaucement de vos v\oe{}ux tant formulés, le fruit de vos innombrables sacrifices. Puisse Dieu l'omniprésent, l'omnipuissant et l'omniscient, vous accorder santé, bonheur et longévité.\\
+ A mes très chers frères et soeurs ainsi qu’à toute la famille. A mes amis et à tous mes proches pour leurs encouragements, leurs assistances et les soutiens inconditionnels. A tous les professeurs de l’ISET de Radès, plus particulièrement à ceux du département Informatique
+} 
+	\end{center}
+	\begin{figure}[!h]
+		\begin{flushright}
+			\includegraphics[width=50mm]{signatureelectronique}
+			\normalsize{Laby Damaro Camara}
+		\end{flushright}
+	\end{figure}
+\end{dedication}
+
+\newpage
+\begin{center}
+		\bf
+		\Huge
+		REMERCIEMENTS \\
+\end{center}
+\vspace{1cm}
+	\begin{dedication}
+    %\usefont{T1}{LobsterTwo-LF}{bx}{it}
+		\begin{center}
+		\large
+			Il m’est offert ici par quelques lignes la possibilité de remercier les personnes qui ont
+contribué à faire de ce projet une réussite au sein de l'Institut Supérieur des Etudes 
+Technologique de Radès, un bon stage.
+
+Je tiens à remercier et à exprimer ma profonde gratitude à notre chère professeure et encadrante 
+Mme Hind Elouedi pour son suivi, accompagnement, son énorme soutien et ses conseils 
+qu'elle  m'a prodigués tout au long de ce stage.
+
+Je remercie tout particulièrement  mon encadrant M. Khalil Ben Zineb pour la disponibilité et pour les accompagnements à mon égard.
+
+L’occasion m’est donnée ici de remercier aussi mes camarades de promotion universitaire
+pour leur esprit de cohésion et de partage qui ont contribué à rendre brillante et enrichissante
+cette année universitaire.		
+	\end{center}
+	\end{dedication}
+	
+	\pagenumbering{roman}
+	\renewcommand{\contentsname}{Sommaire}
+	\tableofcontents
+	
+	
+	\listoffigures
+	
+	\listoftables
+	
+	\newpage
+	\pagenumbering{arabic}
+	
+	\chapter*{INTRODUCTION GENERALE}  \addcontentsline{toc}{chapter}{Introduction générale} 
+	\markboth{Introduction générale}{}
+\textbf{Vente en ligne} également qualifiée de \textbf{commerce électronique} ou d'\textbf{e-commerce}, la vente en ligne correspond aux différentes transactions électroniques qui s'effectuent à travers les réseaux informatiques.	\\
+	
+Dans le but d'offrir un service de vente et d'échange de qualité en ligne en Guinée, le projet \textbf{Makityfan} a vu le jour. Il a pour vocation de démocratiser le commerce électronique en Guinée. L’idée du projet est de créer des applications spécialisées dans le commerce en ligne afin d’améliorer la visibilité des commerçants, faire exploser leurs chiffres d'affaires d’une part et faciliter les échanges entre les citoyens guinéens d’autre part.\\	
+	
+A présent la version actuelle de la plateforme\cite{ref1} ne répond pas à toutes les attentes du projet, elle n’a que les fonctionnalités basiques comme la recherche par formulaire, par ville, par catégories qui sont souvent mal comprises par ses utilisateurs.\\
+
+C’est pour remédier à ces difficultés qu’est venue l’idée d’ajouter des fonctionnalités supplémentaires comme la recherche par image, par caméra, autocomplétions lors de l’ajout des produits et la proposition des produits similaires aux produits commandés par l'utilisateur.\\
+
+Le contexte de notre projet est d’intégrer un modèle de Deep Learning qui permettra de faire la reconnaissance d’images et extraction des caractéristiques de celles-ci.\\
+
+En effet, après intégration de ce modèle à l’application, les utilisateurs pourraient faire des recherches à travers l’image, à travers les caméras de leurs appareils mobiles ou ordinateurs et avoir de l’autocomplétions, etc. \\
+
+Ce rapport présente l’ensemble des étapes suivies pour développer la solution. \\
+
+Un premier chapitre appelé «\textbf{Etude préalable}», qui contient d’abord une présentation de l’organisme d’accueil. Puis le cadre du projet où nous trouvons la présentation du projet, la problématique, l’étude de l’existant, la critique de l’existant et la solution proposée.  Et nous terminons par la gestion de projet, dans laquelle on trouve l’approche et la méthodologie à adopter.
+
+Le deuxième chapitre intitulé «\textbf{Etat de l’art}», où nous trouvons la partie des recherches menées pour comprendre les notions de «\textbf{Web Scraping}», «\textbf{Vision par ordinateur}».\newline
+
+Le troisième chapitre  appelé «\textbf{Conception \& Environnement de travail}», qui décrit les acteurs principaux de notre système ainsi que les besoins fonctionnels et non fonctionnels puis nous terminerons ce chapitre par les diagrammes de cas d'utilisation et de classes. \newline
+En suite nous allons énumérer et présenter les outils, les langages et les Frameworks utilisés, nous allons développer la planification avec le «\textbf{Backlog Produit}». Puis nous terminerons en choisissant une architecture à utiliser. \newline
+
+Enfin un dernier chapitre intitulé «\textbf{Mise en \oe{}uvre}», où nous mettrons en place les phases d'implémentation des différentes parties de notre système. \newline
+
+Cinq (5) «\textbf{Releases}» sont prévues dans le «\textbf{Backlog Produit}».\\
+
+Le premier \textbf{Release}, regroupe les phases de préparation des environnements de travail et leur apprentissage.\\
+
+Dans le deuxième \textbf{Release}, nous allons récupérer des données du projet à travers le Webscraping.\\
+
+Ensuite dans le troisième \textbf{Release}, nous allons traiter nos images avant la création des modèles de vision par ordinateur.\\
+
+Dans l'avant dernier \textbf{Release}, nous allons expliquer le principe de la vision par ordinateur, les approches, les algorithmes utilisés et la mise en place des modèles de reconnaissance et extraction des informations des caractéristiques des informations des images.\\
+
+Et enfin dans le dernier \textbf{Release}, nous allons intégrer le modèle à notre site web.
+
+\chapter{ETUDE PREALABLE}
+	\section{Introduction}
+	Dans ce chapitre, nous mettrons le projet dans son contexte général. Nous commençons par la présentation de l’organisme d’accueil, ensuite nous allons faire une analyse des différentes solutions existantes. Enfin, nous terminerons par les approches et méthodologies adoptées au cours de ce projet.	
+	
+
+\section{Présentation de l'organisme d'accueil}
+L’entreprise d’accueil est « \textbf{SchoolUpgrader} », qui est une start-up de développement des applications web et mobile, elle est spécialisée dans le développement des solutions Software as a Service (\textbf{SaaS}). \textbf{SchoolUpgrader} a pour but de créer des plateformes visibles, pratique et gérable pour les écoles, les centres de formation, les universités et les particuliers avec une structure basée sur le cloud.
+\begin{table}[!h]
+	\centering
+		\begin{tabular}{|c||c|}
+        	\hline
+        	\begin{bf}Raison Social\end{bf} & \begin{bf}SchoolUpgrader\end{bf} \\ 
+        	\hline
+        	Date de Création & Septembre 2020\\ 
+        	\hline
+         	Adresse & Manouba Technopark B43\\ 
+        	\hline
+         	Forme Juridique & SARL\\ 
+        	\hline
+         	Section d’activité & Développement des solutions SaaS\\ 
+        	\hline
+         	Directeur Général & Khalil Ben Zineb\\ 
+        	\hline
+         	Nombre d’employés & 5 personnes\\ 
+        	\hline
+        	Téléphone & +216 55 512 489\\ 
+        	\hline
+        	Email & schoolupgrader.saas@gmail.com\\ 
+        	\hline
+        	Site web & https://www.schoolupgrader.com\\ 
+        	\hline
+		\end{tabular}
+	\caption{Tableau récapitulatif de SchoolUpgrader}
+	\label{label_that_can_be_referenced_later}
+\end{table}
+
+\newpage
+\section{Etude de l'existant}
+Avant d'aborder le développement de notre application, nous allons présenter d'une manière claire et précise l'existant.\\
+Notre premier travail a été d'aller rencontrer les responsables  de \textbf{MakityFan}. C'est à la suite de cette rencontre que nous avons pu avoir une connaissance approfondie de l'existant et que nous décrirons dans les lignes qui suivent.
+
+\subsection{Présentation de Makityfan }
+A présent, \textbf{Makityfan} propose des pages suivantes: Accueil, Boutique, Aide, Apropos, Avis.
+\subsubsection{Accueil}
+La page d'accueil est la page qui représente des activités de \begin{bf}MakityFan\end{bf}.
+\begin{enumerate}
+  \item \begin{bf}La barre de recherche \end{bf}\\
+L'objectif de la barre de recherche est de permettre aux utilisateurs de rechercher un produit par: nom, ville.
+  \item \begin{bf}Liste des catégories\end{bf} \\
+Cette liste s'adresse particulièrement aux utilisateurs qui s'intéressent aux produits par catégories: Immobilier, Téléphone et Informatique, électroménager, Sport, Voiture, etc.
+\end{enumerate} 
+\vspace{0.2cm}
+\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[width=480pt, height=228pt]{accueil}
+		\end{center}
+		\caption{Page d'accueil}
+		\label{Page d'accueil}
+	\end{figure}
+	
+\subsubsection{Annonce}
+La page `Annonce' permet aux utilisateurs d'afficher et chercher toutes les annonces à travers:
+ le nom, la ville et le type d'annonce;
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt]{annonce}
+		\end{center}
+		\caption{Page de gestion des annonces}
+		\label{Page de gestion des annonces}
+	\end{figure}
+\subsubsection{Boutique}
+La page `Boutique' s'adresse aux commerçants et à leurs clients:
+\begin{itemize}
+      \item Les commerçants peuvent gérer leurs boutiques.
+      \item Les clients quand à eux, peuvent afficher et commander les produits des commerçants.	
+\end{itemize} 
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=200pt]{boutique}
+		\end{center}
+		\caption{Page de gestion des boutiques}
+		\label{Gestion des boutiques}
+	\end{figure}
+\newpage	
+\subsubsection{Aide}
+La page `Aide' permet aux utilisateurs d'accéder aux tutoriels d'aide à l'utilisation de la plateforme.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt]{aide2}
+	\end{center}
+	\caption{Page d'aide}
+	\label{Page d'aide}
+\end{figure}
+\subsubsection{Vos Avis}
+La page `Vos Avis' permet aux utilisateurs de donner des feedbacks afin d'améliorer la plateforme.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=200pt]{avis}
+	\end{center}
+	\caption{Page d'avis}
+	\label{Page d'avis}
+\end{figure}
+\newpage
+\subsection{Processus de recherche}
+Le processus de recherche des annonces et produits se déroule comme suit: 
+\begin{itemize}
+	\item Vous saisissez une lettre, un mot ou une expression.
+	\item Vous soumettez le formulaire.
+	\item Le système cherche les noms des annonces, des produits qui correspondent à ces patterns et les retournes.
+	\vspace{2cm}
+	\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=280pt]{recherche}
+	\end{center}
+	\caption{Page de recherche}
+	\label{Page de recherche}
+\end{figure} 
+\end{itemize}
+\subsection{Critique de l'existant}
+D'après cette études de l'application \begin{bf}MakityFan\end{bf}, nous avons constaté plusieurs failles auxquelles nous pourrions remédier.\\Par exemple l'applications ne permet la recherche qu’à travers les \begin{bf}formulaires\end{bf}, les «\begin{bf}les listes de sélection\end{bf}» que les utilisateurs utilisent mal, mais avec le temps nous constatons que la concentration des utilisateurs ne fait que diminuer et cela fait qu’ils ont souvent une mauvaise expérience avec la plupart de ces applications.\\
+C’est pourquoi en plus de ces fonctionnalités, il est nécessaire d’avoir les fonctionnalités de recherches et de filtrages visuels en utilisant la vision par ordinateur. 
+Alors dans les sections suivantes, nous allons développer ces faiblesses.
+\subsubsection{Perte de temps}
+La saisie des informations par rapport à un produit spécifique, peut prendre assez de temps pour certains utilisateurs du site.
+
+
+\subsubsection{Difficulté de trouver les produits }
+\begin{itemize}
+   \item A cause, de fautes d'orthographe et syntaxiques, il arrive que les utilisateurs ne trouvent pas les produits qu’ils souhaitent voir.
+   \item Certains utilisateurs analphabètes n'arrivent pas à écrire le nom des produits qu'ils désirent.
+\end{itemize}
+
+\subsection{Solution proposée}
+Pour répondre aux besoins du projet \begin{bf}MakityFan\end{bf}, l’objectif est de développer une application avec une meilleure expérience utilisateur qui contient toutes les fonctionnalités des applications traditionnelles et celles de vision par ordinateur.\\
+\newline
+Suite à notre étude, nous avons proposé une solution de \begin{bf}Vision par ordinateur\end{bf}\cite{ref7} qui permettra aux utilisateurs de faire des recherches sur \begin{bf}Makityfan\end{bf} en allant sélectionner une image dans son device (ordinateur ou téléphone), ou bien à travers la caméra de son device et de leur faire des recommandations en se basant sur leurs historiques des commandes.
+\section{Méthodologie et formalismes adoptés}
+Une méthode d’analyse et de conception est un procédé qui a pour objectif de permettre de formaliser les étapes préliminaires du développement d’un système afin de rendre ce développement plus fidèle aux besoins du client. Pour ce faire, nous partons d’un énoncé informel (le besoin tel qu’il est exprimé par le client, complété par des recherches d’informations auprès des experts du domaine fonctionnel, comme les futurs utilisateurs d’un logiciel), ainsi que de l’analyse de l’existant éventuel (c’est-à-dire la manière dont les processus à traiter par le système se déroulent actuellement chez le client). Il existe deux grandes familles de méthodes : méthodes traditionnelles et les méthodes agiles.
+\subsection{Comparaison des deux méthodes}
+Il est très important de bien choisir la méthodologie\cite{ref2} qui répond parfaitement à ses besoins, s’adaptant mieux aux exigences du client et qui fournit l’ouvrage dans les plus brefs délais. Pour cela, il faut effectuer une étude comparative entre les deux méthodes afin d’en sélectionner la meilleure qui s’adapte à notre projet. Le tableau suivant décrit les caractéristiques de chaque méthode. Après une étude comparative entre ces deux grandes familles de méthodes, nous avons décidé d’adopter une gestion de développement Agile car c’est elle qui répond parfaitement aux besoins de ce projet mais il reste encore à choisir parmi les méthodes agiles la méthode la plus adaptée à ce projet .
+\begin{table}[!h]
+       \begin{center}
+		\begin{tabular}{|p{7cm}|p{8cm}|}
+        	\hline
+        	\begin{bf}Méthodes traditionnelles\end{bf} & \begin{bf}Méthodes Agiles\end{bf} \\ 
+        	\hline
+        	En cascade ou en V phases séquentielles & Itératif et incrémental\\ 
+        	\hline
+         	Planification : Prédictive & Planification : adaptative\\ 
+        	\hline
+         	Documentation : Produite en quantité importante & Documentation : Réduite au strict nécessaire\\ 
+        	\hline
+         	Une équipe avec des ressources spécialisées, dirigées par un chef de projet & Une équipe responsabilisée où l’initiative et la communication sont privilégiées, soutenue par le chef de projet\\ 
+        	\hline
+         	Contrôle qualité à la fin du cycle de développement. Le client découvre le produit fini & Un contrôle qualité précoce et permanent, au niveau du produit et du processus. Le client visualise les résultats tôt et fréquemment\\ 
+        	\hline
+         	Résistance aux changements, Processus lourds de gestion de changements acceptés & Accueil favorable au changement inéluctable, intégré dans le processus\\ 
+        	\hline
+        	Suivi de l’avancement : Mesure de la conformité aux plans initiaux. Analyse des écarts & Un seul indicateur d’avancement : le nombre de fonctionnalités implémentées et le travail restant à faire\\ 
+        	\hline
+		\end{tabular}
+		\end{center}
+	\caption{Tableau comparatif entre les méthodes traditionnelles et agiles\cite{ref31}}
+	\label{label_that_can_be_referenced_later}
+\end{table} 
+
+En effet les méthodes agiles disponibles sont nombreuses et peuvent être source de confusion. Les méthodes agiles les plus populaires en usage aujourd’hui sont \cite{ref3}:
+\begin{itemize}
+	\item 	Scrum ;
+	\item l’eXtrême Programming (XP) ; 
+    \item Feature Driven Development (FDD) ; 
+    \item Lean Software Development ; 
+    \item Agile Unified Process (Agile UP ou AUP) ; 
+    \item Crystal ; 
+    \item Dynamic Systems Development Method (DSDM);
+\end{itemize}
+\subsection{Méthodologie de travail}
+\subsubsection{Critère de choix}
+Notre objectif est de pouvoir réaliser notre projet dans les délais et budgets prévus.
+Pour atteindre cet objectif, il faut tenir compte des trois contraintes du projet : Qualité, Coût et Délai.
+La satisfaction du client est à la fois une contrainte et un objectif.
+\subsubsection{Méthodologie adoptée}
+Après une étude comparative des méthodologies traditionnelles et agiles, le choix s’est porté sur une méthodologie agile. En fait les méthodologies agiles sont des ensembles de pratiques de développement de projets en technologie de l’information applicables à différents projets. Ces méthodes offrent une plus grande efficacité que les méthodes traditionnelles\cite{ref3}. Elles engagent le client autant que possible et permettent une grande réactivité à ses demandes et donc de privilégier sa réelle satisfaction dans le cadre d’un contrat de développement.\\
+Les méthodologies agiles se basent sur un cycle de développement commun : itératif, incrémentiel et adaptatif. Pour en savoir plus (voir annexe A.1)
+
+\subsubsection{Scrum}
+La méthodologie Scrum\cite{ref4} incarne la plus utilisée des méthodes Agiles existantes. Le terme anglais « \begin{bf}Scrum\end{bf} », qui signifie « \begin{bf}mêlée\end{bf} » en français, apparaît pour la première fois en 1986.
+
+Le principe de base est simple. L'équipe avance ensemble et reste prête à réorienter le projet au fur et à mesure de sa progression. Elle agit en cela comme des \begin{bf}rugbymen\end{bf} qui se passent le ballon de main en main jusqu'à marquer un essai.
+
+\subsubsection{Composant du Framework}
+\begin{enumerate}
+	\item Rôles;
+	\item Événements;
+	\item Artefacts;
+	\item Règles.
+\end{enumerate}
+
+\subsubsection{Description de Scrum}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{scrum_p}
+	\end{center}
+	\caption{Sprint du Scrum\cite{ref15}}
+	\label{Sprint du Scrum}
+\end{figure} 
+
+\subsubsection{Rôles SCRUM}
+\begin{enumerate}
+	\item Propriétaire du produit (\begin{bf}Product Owner\end{bf}) : il est le représentant officiel du client dans le cadre d’un projet Scrum\cite{ref5}. Il est l’interlocuteur principal du Maître de mêlée (Scrum Master) et des membres de l’équipe, définissant les besoins du produit et rédigeant les spécifications. Il peut se faire assister par des responsables fonctionnels pour la rédaction du cahier des charges. Il est également responsable de définir et de prioriser les tâches (User Stories) pour chaque \begin{bf}Sprint\end{bf};
+	\item Maître de mêlée (\begin{bf}Scrum Master\end{bf}) : une personne chargée de s’assurer que la méthode est appliquée et que ses objectifs sont atteints. Il ne s’agit pas d’un chef de projet, mais d’une personne chargée de lever tout obstacle qui empêcherait l’équipe et le projet de progresser pendant les différents Sprint;
+	\item \begin{bf}Equipe de développement\end{bf} : Il s’agit d’une ou d’un groupe de personnes en charge du développement des tâches du projet. Il doit répondre aux exigences du Product Owner sous la supervision du \begin{bf}Scrum Master\end{bf};
+\end{enumerate}
+\section{Conclusion}
+Dans ce premier chapitre, nous avons fait une étude de l’existant et les critiques de celui-ci, ensuite nous avons présenté l’organisme d’accueil ainsi que le projet à réaliser. Nous allons entamer maintenant la phase de spécifications et de l’analyse des besoins.
+
+
+\chapter{ETAT DE L'ART}
+\section{Introduction}
+Dans ce chapitre, nous discuterons et expliquerons en détail les différents concepts majeurs qui entourent notre projet. 
+Avant d'entamer la conception de l'application.
+
+\section{Web Scraping}
+En informatique, une donnée est la représentation d'une information dans un programme : soit dans le texte du programme (code source), soit en mémoire durant l'exécution. Les données, souvent codées, décrivent les éléments du logiciel telle qu'une entité (chose), une interaction, une transaction, un évènement, un sous-système, etc.\\
+
+Les données peuvent être conservées et classées sous différentes formes : textuelles (chaîne), numériques, images, sons, etc. Les données variables qui font la souplesse d'un programme sont généralement lues depuis un appareil d'entrée utilisateur (clavier, souris, etc), un fichier, ou en réseau. Le processus d'enregistrement des données dans une mémoire s'appelle la mémorisation.
+
+\subsection{Définition}
+Concrètement, le \begin{bf}web scraping\end{bf} (« \begin{bf}racler le web\end{bf} » en français) est le processus d’extraction de données sur un site Web.\\
+Il permet de récolter une multitude d’informations précieuses, comme une image, une adresse e-mail, un numéro, une adresse, etc. et de les rassembler dans une base de données.
+\newpage
+\subsection{Méthode}
+On distingue deux manières de faire du scraping : manuellement ou automatiquement.\\
+\begin{enumerate}
+	\item Le \begin{bf}scraping manuel\end{bf} consiste à copier-coller des informations/données dans le but de se constituer une base de données. C’est un travail très chronophage qui est généralement utilisé pour de petites quantités de données.
+	\item Le \begin{bf}scraping automatique\end{bf} : il y a tout un tas d’outils de scraping qui permettent d’explorer et d’extraire des informations depuis des sites web.
+\end{enumerate}
+
+\subsection{Outils}
+Comme dans n'importe quel projet d’\begin{bf}Intelligence Artificielle\end{bf}, nous devons soit récupérés ou avoir accès aux données avant d'entamer le développement des modèles. C'est pourquoi nous avons commencé par l'études des différentes manières de récupération des données sur Internet.\\
+
+Nous n'allons pas toucher toutes les stratégies de récupération  de données, mais seulement celles qui sont plus adaptées à ce projet.
+
+\subsubsection{Scrapy pour aller vite, et fort}
+Scrapy\cite{ref11} est un peu une référence pour tous ceux qui ont déjà écrit du Python. C’est un Framework qui permet de scraper rapidement et facilement. Vous pouvez l’exécuter en local, sur vos serveurs / lambdas, ou sur scrapy cloud. La grosse limite, c’est pour les pages générées en Javascript, un usage de plus en plus fréquent. Dans ce cas-là, Scrapy recommande (justement) de chercher les sources de données directement en utilisant le « Network » de votre navigateur.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=150pt]{scrapy}
+	\end{center}
+	\caption{Framework Scrapy}
+	\label{Framework Scrapy}
+\end{figure} 
+
+\newpage
+\subsubsection{Selenium}
+\begin{bf}Selenium\end{bf} est un outil d’automatisation de test pour le web. Il permet de créer des « robots » qui naviguent dans des pages webs comme le ferait un vrai utilisateur. Bien que le premier rôle de Selenium soit le testing de pages webs (développement web), cet outil est beaucoup utilisé pour l’extraction de données.(voir annexe A.2)
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=150pt]{selenium_p}
+	\end{center}
+	\caption{Selenium pour le WebScraping}
+	\label{Selenium pour le WebScraping}
+\end{figure} 
+
+\subsubsection{Requests et BeautifulSoup}
+\begin{enumerate}
+	\item \begin{bf}Requests\end{bf}\cite{ref12} reprend tous les travaux autour de Python HTTP/1.1 - et rend l’intégration avec des webservices très facile. Pas besoin d’ajouter des querystrings à vos URLs manuellement, ou d’encoder vous-même vos datas pour les POST. Les Keep-alive et le groupement des connexions HTTP sont 100\% automatisés, grâce à urllib3, qui est directement intégré à Requests. (Annexe A.3)
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=150pt]{requests}
+	\end{center}
+	\caption{Bibliothèque Requests}
+	\label{Bibliothèque Requests}
+\end{figure} 
+	\item \begin{bf}BeautifulSoup\end{bf}\cite{ref13} fournit des méthodes simples pour naviguer, rechercher et modifier un arbre d’analyse dans des fichiers HTML ou XML. Il transforme un document HTML complexe en un arbre d’objets Python. Il convertit aussi automatiquement le document en Unicode, de sorte que vous n’avez pas à penser aux encodages. Cet outil vous aide non seulement à scraper, mais aussi à nettoyer les données. BeautifulSoup prend en charge l’analyseur HTML inclus dans la bibliothèque standard de Python, mais aussi plusieurs analyseurs Python tiers comme lxml ou html5lib.(voir annexe A.3)
+	\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=150pt]{beautifulsoup}
+	\end{center}
+	\caption{Bibliothèque Beautifulsoup}
+	\label{Bibliothèque Beautifulsoup}
+\end{figure}
+	
+\end{enumerate}
+
+\section{Intelligence Artificielle}
+L'\begin{bf}Intelligence Artificielle\end{bf} (IA)\cite{ref14} telle que nous la connaissons est une Intelligence Artificielle faible, par opposition à l'IA forte, qui n'existe pas encore. Aujourd'hui, les machines sont capables de reproduire un comportement humain, mais sans conscience. Plus tard, leurs capacités pourraient croître au point de se transformer en machines dotées de conscience, de sensibilité et d'esprit.
+
+\subsection{Définition}
+L’intelligence artificielle ou encore IA, est un ensemble d’algorithmes conférant à une machine des capacités d’analyse et de décision lui permettant de s’adapter intelligemment aux situations en faisant des prédictions à partir de données déjà acquises.
+\newpage
+\subsection{Domaines d’application}
+Les domaines d’application et usages potentiels d’une Intelligence Artificielle sont de plus en plus divers : 
+\begin{enumerate}
+ 	\item Compréhension du langage naturel;
+	\item Reconnaissance visuelle;
+	\item Robotique;
+	\item Système autonome;
+	\item Machine Learning;
+	\item L’IA est un véritable atout pour la Direction des Systèmes d'Information (DSI);
+\end{enumerate}
+
+\subsection{Apprentissage automatique}
+L’Apprentissage Automatique\cite{ref15} est un type d’intelligence artificielle (IA) qui permet aux applications logicielles d’être plus précises dans la prévision des résultats sans être explicitement programmées pour le faire. Les algorithmes d’Apprentissage Automatique utilisent des données historiques comme entrée pour prédire de nouvelles valeurs de sortie.
+\subsubsection{Approche d'apprentissage automatique}
+L\begin{bf}’Apprentissage Automatique\end{bf} classique est souvent catégorisé selon la façon dont un algorithme apprend à devenir plus précis dans ses prédictions. Il existe deux approches de base : l’apprentissage supervisé et l’apprentissage non supervisé. Le type d’algorithme qu’un scientifique choisit d’utiliser dépend du type de données qu’il veut prédire.
+
+\subsubsection{Apprentissage supervisé}
+L’Apprentissage supervisé\cite{ref16} exige que le spécialiste des données forme l’algorithme avec des entrées étiquetées et des sorties souhaitées. Les algorithmes d’apprentissage supervisé sont bons pour les tâches suivantes.\\ \newline
+Prenons l’exemple d’une application destinée à reconnaître les spams de manière automatique. Pour l’entraîner, on lui présente des emails étiquetés comme «désirables» ou «spams». Par des techniques issues des statistiques et des probabilités, l’algorithme comprend alors quelles sont les caractéristiques qui permettent de classer ces emails dans chacune des catégories. Ainsi, au fur et à mesure qu’on lui présentera de nouveaux emails, il pourra les identifier, en donnant un score de probabilité. Par exemple : «cet email a 95 pourcent de chances d’être un spam.» Et ses premières réponses seront corrigées à la main, pour qu’il s’améliore au fur et à mesure. 
+
+Cette méthode permet de réaliser deux types de tâches :
+
+\begin{enumerate}
+	\item \begin{bf}Des tâches de classification:\end{bf} Ces tâches consistent à attribuer une classe à des objets. Par exemple, dans le milieu bancaire, on peut identifier si une transaction est frauduleuse ou non frauduleuse de manière automatique;
+	\item \begin{bf}Des tâches de régression:\end{bf} Ici, on n’attribue pas une classe mais une valeur mathématique : un pourcentage ou une valeur absolue. Par exemple, une probabilité pour une machine de tomber en panne (15 pourcent, 20 pourcent, etc.) ou le prix de vente idéal d’un appartement en fonction de critères comme la surface, le quartier, etc;	
+\end{enumerate}
+
+\subsubsection{Apprentissage non supervisé}
+L’algorithme utilise un jeu de données non étiquetées. On demande alors à la machine de créer ses propres réponses. Elle propose ainsi des réponses à partir d’analyses et de groupement de données. Pour y voir plus clair, voici des exemples de tâches réalisables grâce à cette méthode.
+
+\begin{enumerate}
+	\item \begin{bf}Des tâches de clustering:\end{bf} Nous demandons à la machine de grouper des objets dans des ensembles de données les plus homogènes possible. Cette technique peut sembler proche de celle de la classification dans l’apprentissage supervisé, mais à la différence de cette dernière, les classes ne sont pas préremplies par un humain, c’est la machine qui « invente » ses propres classes, à un niveau de finesse pas toujours évident pour un humain. Une technique très utile dans le marketing pour faire de la segmentation client notamment.
+	\item \begin{bf}Des tâches de filtrage collaboratif:\end{bf}     L’objectif est toujours de personnaliser une expérience client. C’est une technique utilisée par de très nombreuses plateformes, telles que Netflix, Spotify, etc. Leurs algorithmes étudient ce que vous avez regardé, aimé, mais aussi ce que des profils similaires au vôtre ont apprécié, pour vous faire des recommandations automatiques. Le modèle s’appuie sur des facteurs implicites inconscients (ce que l’utilisateur a fait), plutôt que des facteurs explicites (des critères remplis par l’utilisateur). Ce genre d’outils est très utilisé dans le e commerce, pour proposer des produits qui pourraient intéresser le client. Amazon en est devenu spécialiste.
+\end{enumerate}
+
+\subsubsection{Apprentissage par renforcement}
+La machine peut se montrer encore plus créative, car elle peut élaborer ses propres stratégies et s’adapter dans le temps et dans son environnement pour réaliser des tâches données. Elle élabore des réponses complexes. L’algorithme devient un agent autonome, dont l’objectif est de réaliser une action au sein d’un environnement. S’il y parvient selon les critères établis par le développeur, il est récompensé. À lui d’élaborer la suite d’actions qui lui permet d’atteindre son objectif.
+\newpage
+\begin{bf}Un exemple pour nous éclairer ?\end{bf}
+
+Prenons un drone autonome qui doit livrer un colis d’un entrepôt de livraison vers une maison. Dans ce cas, l’acteur est le drone. Il peut réaliser différentes actions : avancer, reculer descendre, monter, accélérer, freiner etc. Chacune de ses actions modifie son état et l’état de l’environnement. Son but : se rendre sans encombre, en 30 minutes, à l’adresse indiquée et revenir. Il se lance alors, fais des premiers choix, joue sur différentes variables. Il évalue ses performances et comprend petit à petit ce qui fonctionne le mieux. Au bout de nombreuses tentatives, il finit par remplir sa mission de manière efficace.\\
+
+C’est également cette méthode qui sera exploitée pour construire les algorithmes des voitures autonomes par exemple. Mais c’est aussi comme cela qu’on peut entraîner des machines capables de jouer à des jeux de stratégie.
+
+\subsubsection{Domaines d’application}
+Parmi les autres utilisations courantes, citons :
+\begin{itemize}
+	\item Les moteurs de recommandation sont un cas d’utilisation courant pour l’Apprentissage Automatique; 
+    \item La détection de fraude;
+    \item Le filtrage de spam;
+    \item La détection des menaces de logiciels malveillants; 
+    \item L’automatisation des processus d’entreprise (BPA); 
+    \item La maintenance prédictive;
+\end{itemize}
+
+
+\subsubsection{Synthèse}
+En résumé, tout dépend, pour nous, de la base de données sur laquelle nous voulons faire travailler l’Intelligence Artificielle et du problème auquel nous cherchons des réponses. Si notre base est étiquetée et que nous savons clairement dans quelles catégories nous souhaitons classer nos données, alors l’ «\begin{bf}apprentissage supervisé\end{bf}» est pour nous. Si nos données ne sont pas étiquetées et que le faire représenterait un coût trop important, alors nous optons pour l’ «\begin{bf}apprentissage non supervisé\end{bf}». L’«\begin{bf}apprentissage par renforcement\end{bf}» nous permettra de développer des machines autonomes.
+
+\subsection{Deep Learning(DL)}
+Il est apparu il y a une dizaine d’années. C’est cette technologie qui intervient notamment dans la reconnaissance d’images ou de langage naturel. Dans certains domaines, elle dépasse même la parité humaine. Cela signifie qu’elle est capable de faire encore mieux qu’un être humain.  
+
+\subsubsection{Définition}
+Le \begin{bf}Deep Learning\end{bf}\cite{ref17} ou apprentissage profond est un type d'intelligence artificielle dérivé du \begin{bf}machine Learning\end{bf} (Apprentissage Automatique) où la machine est capable d'apprendre par elle-même, contrairement à la programmation où elle se contente d'exécuter à la lettre des règles prédéterminées.
+
+\subsubsection{Fonctionnement du Deep Learning}
+Le \begin{bf}Deep Learning\end{bf} s'appuie sur un réseau de neurones artificiels s'inspirant du cerveau humain. Ce réseau est composé de dizaines voire de centaines de «\begin{bf} couches\end{bf}» de neurones, chacune recevant et interprétant les informations de la couche précédente. Le système apprendra par exemple à reconnaître les lettres avant de s'attaquer aux mots dans un texte, ou détermine s'il y a un visage sur une photo avant de découvrir de quelle personne il s'agit. 
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{fonctionnement_deep_learning}
+	\end{center}
+	\caption{Fonctionnement du Deep Learning}
+	\label{Fonctionnement du Deep Learning}
+\end{figure} 
+
+À chaque étape, les « mauvaises » réponses sont éliminées et renvoyées vers les niveaux en amont pour ajuster le modèle mathématique. Au fur et à mesure, le programme réorganise les informations en blocs plus complexes. Lorsque ce modèle est par la suite appliqué à d'autres cas, il est normalement capable de reconnaître un chat sans que personne ne lui ait jamais indiqué qu'il n’a jamais appris le concept de chat. Les données de départ sont essentielles : plus le système accumule d'expériences différentes, plus il sera performant.
+
+\subsubsection{Catégories d’actions}
+\begin{itemize}
+	\item \begin{bf}Les tâches cognitives: \end{bf}Les traducteurs automatiques qui travaillent à partir de langage naturel, les algorithmes de reconnaissance d’images ou de son, traduction automatique reposent tous sur des outils de Deep Learning. On les retrouve dans de très nombreux outils professionnels ou du quotidien. Par exemple, un logisticien peut utiliser une application qui compte les colis dans un local, grâce à la reconnaissance d’image. Un industriel peut quant à lui faire du contrôle qualité sur sa chaîne de production etc.  
+	\item \begin{bf}Les modèles génératifs:\end{bf}Une IA qui peint comme Vincent Van Gogh ? C’est possible grâce aux réseaux de neurones. Le Deep Learning est en mesure de repérer les caractéristiques qui font le style d’un artiste, pour les reproduire. Les résultats peuvent être bluffants. C’est aussi cette technique qui est utilisée pour réaliser les fameux Deep fake, des photos ou vidéos plus vraies que nature mais conçues de manière complètement artificielle. Mais dans les entreprises, elle peut être un solide allié des équipes design, en créant automatiquement de nouvelles idées. Elle peut aussi générer des dessins techniques. Dans la sécurité, elle sera en mesure d’augmenter la résolution d’une image.
+	\item \begin{bf}L’interaction client ou next best action:\end{bf} Si un client a plusieurs interactions avec une marque, des produits ou des services, le Deep Learning peut recommander les prochaines actions marketing ou commerciales à mener. En effet, il aura été en mesure d’apprendre des opérations menées par le passé.
+\end{itemize}
+
+\subsubsection{Domaines d’application}
+Le \begin{bf}Deep Learning\end{bf} est utilisé dans de nombreux domaines :
+\begin{itemize}
+    \item Reconnaissance d'image;
+    \item Traduction automatique;
+    \item Voiture autonome;
+    \item Diagnostic médical;
+    \item Recommandations personnalisées;
+    \item Modération automatique des réseaux sociaux;
+    \item Prédiction financière et trading automatisé;
+    \item Identification de pièces défectueuses;
+    \item Détection de malwares ou de fraudes;
+    \item Chatbots (agents conversationnels);
+    \item Exploration spatiale;
+    \item Robots intelligents;
+\end{itemize}
+\subsection{Réseau neuronal convolutif ou Convolutional Neural Network(CNN)}
+Le fonctionnement d'un CNN est à première vue simple : l’utilisateur fournit en entrée une image sous la forme d’une matrice de pixels. Celle-ci dispose de 3 dimensions :
+\begin{itemize}
+	\item \begin{bf}Deux dimensions\end{bf} pour une image en niveaux de gris.
+    \item \begin{bf}Trois dimensions\end{bf} pour une image en couleur, c'est à dire de profondeur 3 pour représenter les couleurs fondamentales (Rouge, Vert, Bleu).
+\end{itemize} 
+
+Contrairement à un modèle MLP (Multi Layers Perceptron) classique qui ne contient qu’une partie classification, l’architecture du Convolutional Neural Network dispose en amont d’une partie convolutive et comporte par conséquent deux parties bien distinctes :
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{cnn2}
+	\end{center}
+	\caption{Réseau de neurones convolutif}
+	\label{Réseau de neurones convolutif}
+\end{figure} 
+
+\subsubsection{Convolution}
+La \begin{bf}convolution\end{bf}\cite{ref25} est une opération mathématique simple généralement utilisée pour le \begin{bf}traitement et la reconnaissance d’images\end{bf}. Sur une image, son effet s’assimile à un filtrage dont voici le fonctionnement :
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{convolution_rgb}
+	\end{center}
+	\caption{Convolution sur trois couches (Red, Green, Bleu) ou RGB}
+	\label{Convolution sur trois couches (Red, Green, Bleu) ou RGB}
+\end{figure}
+
+
+\begin{enumerate}
+	\item Dans un premier temps, on \begin{bf}définit la taille de la fenêtre de filtre\end{bf} située en bas à droite.
+	\item La fenêtre de filtre, représentant la feature, \begin{bf}se déplace progressivement\end{bf} de la \begin{bf}gauche vers la droite\end{bf} d’un certain nombre de cases défini au préalable (le pas) appelé \begin{bf}stride\end{bf} jusqu’à arriver au bout de l’image.
+	\item À chaque portion d’image rencontrée, un calcul de convolution s’effectue permettant d’obtenir en sortie une \begin{bf}carte d’activation\end{bf} ou \begin{bf}feature map\end{bf} qui indique où est localisées les features dans l’image : plus la feature map est élevée, plus la portion de l’image balayée ressemble à la feature.
+\end{enumerate}
+  
+\subsubsection{Filtre de convolution}
+Lors de la partie convolutive d’un Convolutional Neural Network\cite{ref26}, l’image fournie en entrée passe à travers une \begin{bf}succession de filtres de convolution\end{bf}. Par exemple, il existe des filtres de convolution fréquemment utilisés et permettant d’extraire des caractéristiques plus pertinentes que des pixels comme la détection des bords (\begin{bf}filtre dérivateur\end{bf}) ou des formes géométriques. Le choix et l’application des filtres se fait automatiquement par le modèle.
+
+Nous allons présenter les filtres, les plus utilisés:
+\begin{itemize}
+	\item Le \begin{bf}Filtre moyenneur\end{bf}: qui (calcule pour chaque pixel la moyenne du pixel avec ses 8 proches voisins).
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[width=350pt]{filtre_moyenneur}
+		\end{center}
+		\caption{Filtre moyenneur}
+		\label{Filtre moyenneur}
+		\end{figure}
+	\item Le \begin{bf}filtre gaussien\end{bf}\cite{ref27} qui permet de réduire le bruit d’une image fournie en entrée.
+\end{itemize}
+
+
+\subsubsection{Avantage de Convolutional Neural Network(CNN)}
+Outre sa fonction de filtrage, l’intérêt de la partie convolutive d’un CNN est qu’elle permet d’extraire des caractéristiques propres à chaque image en les compressant de façon à réduire leur taille initiale, via des méthodes de sous-échantillonnage tel que le \begin{bf}Max-Pooling\end{bf}.
+
+\subsubsection{Max-Pooling}
+Le Max-Pooling est un processus de discrétisation basé sur des échantillons. Son objectif est de sous-échantillonner une représentation d’entrée (image, matrice de sortie de couche cachée, etc.) en réduisant sa dimension. De plus, son intérêt est qu’il réduit le coût de calcul en \begin{bf}réduisant le nombre de paramètres à apprendre\end{bf} et fournit une \begin{bf}invariance par petites translations\end{bf} (si une petite translation ne modifie pas le maximum de la région balayée, le maximum de chaque région restera le même et donc la nouvelle matrice créée restera identique).\\
+
+ Imaginons que nous avons une matrice 4x4 représentant notre entrée initiale et un filtre d’une fenêtre de taille 2x2 que nous appliquerons sur notre entrée. Pour chacune des régions balayées par le filtre, le max-pooling prendra le maximum, créant ainsi par la même occasion une nouvelle matrice de sortie où chaque élément correspondra aux maximums de chaque région rencontrée.
+
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=300pt, height=180pt]{max_pooling}
+	\end{center}
+	\caption{Max-Pooling}
+	\label{Max-Pooling}
+\end{figure}
+
+La fenêtre de filtre se déplace de deux pixels vers la droite (stride/pas = 2) et récupère à chaque pas l’\begin{bf}argmax\end{bf} correspondant à la valeur la plus grande parmi les 4 valeurs de pixels.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=250pt, height=100pt]{max_pooling_trans}
+	\end{center}
+	\caption{Effet du Max-Pooling}
+	\label{Effet du Max-Pooling}
+\end{figure}
+
+\subsubsection{Transfert learning : Adapter des CNN pré-entraînés}
+Pour des usages pratiques, il est possible d’exploiter la puissance des CNN sans être un expert du domaine, avec du matériel accessible et une quantité raisonnable de données annotées. Toute la complexité de création de CNN peut être évitée en adaptant des réseaux pré-entraînés disponibles publiquement. Ces techniques sont appelées \begin{bf}transfert learning\end{bf}\cite{ref28}, car on exploite la connaissance acquise sur un problème de classification général pour l’appliquer de nouveau à un problème particulier.
+
+\subsection{Vision par ordinateur}
+La \begin{bf}Vision par ordinateur\end{bf} est un domaine de l'intelligence artificielle (IA) qui permet aux ordinateurs et aux systèmes de dériver des informations significatives à partir d'images numériques, de vidéos et d'autres entrées visuelles, et de prendre des mesures ou de faire des recommandations sur la base de ces informations. Si l'intelligence artificielle permet aux ordinateurs de penser, la vision par ordinateur leur permet de voir, d'observer et de comprendre.
+
+\subsubsection{Comment fonctionne la vision par ordinateur ?}
+La \begin{bf}Vision par ordinateur\end{bf} a besoin de beaucoup de données. Elle exécute des analyses de données encore et encore jusqu'à ce qu'elle perçoive des distinctions et reconnaisse finalement les images. Par exemple, pour entraîner un ordinateur à reconnaître des pneus de voiture, elle doit recevoir de grandes quantités d'images de pneus et d'éléments liés aux pneus pour apprendre les différences et reconnaître un pneu, en particulier un pneu sans défaut.\\ 
+Deux technologies essentielles sont utilisées pour y parvenir : un type d’apprentissage automatique appelé apprentissage en profondeur\cite{ref9} et un réseau de neurones convolutifs.\\
+
+L'apprentissage automatique utilise des modèles algorithmiques qui permettent à un ordinateur de se renseigner sur le contexte des données visuelles. Si suffisamment de données sont introduites dans le modèle, l'ordinateur «regardera» les données et apprendra à distinguer une image d'une autre. Les algorithmes permettent à la machine d'apprendre par elle-même, plutôt que quelqu'un la programme pour reconnaître une image.\\ 
+
+Un \begin{bf}CNN\end{bf} aide un modèle d'apprentissage automatique ou d'apprentissage en profondeur à « regarder » en décomposant les images en pixels auxquels sont attribuées des libellés. Il utilise les libellés pour effectuer des convolutions (une opération mathématique sur deux fonctions pour produire une troisième fonction) et fait des prévisions sur ce qu'il « voit ». Le réseau de neurones exécute des convolutions et vérifie l'exactitude de ses prévisions par une série d'itérations jusqu'à ce que les prévisions commencent à se réaliser. Il s'agit alors de reconnaître ou de voir des images d'une manière similaire aux humains.\\ 
+
+A l'instar d'un être humain qui distingue une image à distance, un \begin{bf}Convolutional Neural Networks (CNN)\end{bf} discerne d'abord les bords durs et les formes simples, puis complète les informations au fur et à mesure des itérations de ses prévisions. Un \begin{bf} Convolutional Neural Networks (CNN)\end{bf} est utilisé pour comprendre des images individuelles. Un réseau de neurones récurrent (\begin{bf} Recurrent Neural Networks (RNN)\end{bf}) est utilisé de manière similaire dans les applications vidéo pour aider les ordinateurs à comprendre comment les images d'une série sont liées les unes aux autres.
+
+\subsubsection{Domaines d’application}
+\begin{enumerate}
+	\item IBM a utilisé la vision par ordinateur pour créer My Moments pour le tournoi de golf Masters 2018.
+	\item Google Translate permet aux utilisateurs de pointer la caméra d'un smartphone vers un panneau dans une autre langue et d'obtenir presque immédiatement une traduction du panneau dans la langue de leur choix;
+	\item Le développement des véhicules autonomes repose sur la vision par ordinateur, qui donne un sens aux données visuelles fournies par les caméras et autres capteurs de la voiture. Il est essentiel d'identifier les autres voitures, les panneaux de signalisation, les marqueurs de voie, les piétons, les vélos et toutes les autres informations visuelles rencontrées sur la route.
+	\item IBM applique la technologie de vision par ordinateur avec des partenaires comme Verizon afin d'amener l'IA intelligente à la périphérie et d'aider les constructeurs automobiles à identifier les défauts de qualité avant qu'un véhicule ne quitte l'usine.
+\end{enumerate}
+
+\section{OpenCV}
+\begin{bf}OpenCV\end{bf} est actuellement la référence de la vision par Ordinateur, peu importe dans quel laboratoire, entreprise, université ou vous irez pour faire du traitement et de l'analyse d'image, il est impossible que les gens qui n'aient pas connaissance de l'existence d'OpenCV.
+\subsection{Définition}
+Initialement développée par Intel, OpenCV (Open Computer Vision) est une bibliothèque graphique. Elle est spécialisée dans le traitement d’images, que ce soit pour de la photo ou de la vidéo.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=200pt, height=100pt]{opencv}
+	\end{center}
+	\caption{OpenCV}
+	\label{OpenCV}
+\end{figure}
+
+\subsection{Fonctionnement d’OpenCV}
+\begin{bf}OpenCV\end{bf} fournit un ensemble de plus de 2500 algorithmes de vision par ordinateur, accessibles via une API (Application Programming Interface). Ce qui permet d’effectuer tout un tas de traitements sur des images (extraction de couleurs, détection de visages, de formes, application de filtres, etc.). Ces algorithmes se basent principalement sur des calculs mathématiques complexes, concernant surtout les traitements sur les matrices (car une image peut être considérée comme une matrice de pixels).
+
+\subsection{Traitements d’images}
+Les algorithmes d’\begin{bf}OpenCV\end{bf} permettent d’appliquer divers traitements sur les images pour faciliter la détection d’éléments précis dans celles-ci. Voici quelques exemples :
+
+\begin{itemize}
+	\item Les \begin{bf}Tresholding (seuillage)\end{bf} d’une image permet de définir une valeur de pixel (correspondant à une couleur) qui servira de seuil. Au-dessus ou en dessous de cette valeur (selon l’algorithme), tous les pixels se verront assigner une autre valeur. Il existe 4 algorithmes de Tresholding.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=160pt]{tresholding}
+	\end{center}
+	\caption{OpenCV Tresholding}
+	\label{OpenCV}
+\end{figure}
+	\item \begin{bf}Les filtres de détection de contours \end{bf} d’un objet sur une image (ex: Filtre de Canny).
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=180pt]{filtredetection}
+	\end{center}
+	\caption{OpenCV les filtres de détection de contours}
+	\label{OpenCV les filtres de détection de contours}
+\end{figure}
+	\item \begin{bf}Les filtres de lissage\end{bf}, permettant de réduire le bruit d’une image. Parmi eux, nous avons notamment les filtres par convolution, se basant sur les pixels voisins pour faire une moyenne.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=260pt]{filtredelissage}
+	\end{center}
+	\caption{OpenCV les filtres de lissage}
+	\label{OpenCV les filtres de lissage}
+\end{figure}
+\end{itemize}
+
+\newpage
+
+\section{Système de recommandation}
+Un système de recommandation\cite{ref33} est une application destinée à proposer à un utilisateur des items susceptibles de l’intéresser en fonction de son profil. Les systèmes de recommandation sont notamment utilisés sur les sites internet de vente en ligne. Ils permettent aux e-commercants de mettre en avant de façon automatisée des produits susceptibles d’intéresser les visiteurs. La sélection de produits affichés est alors personnalisée selon différents critères afin d’augmenter le chiffre d’affaire généré par les ventes.
+\subsection{Fonctionnement des systèmes de recommandation}
+Les systèmes de recommandation ont pour premier rôle d’identifier le sous groupe d’utilisateurs auquel appartient un utilisateur afin de lui proposer des résultats susceptibles de l’intéresser. L’identification de sous groupes d’utilisateurs auquel appartient un utilisateur se fait généralement en fonction de l’historique d’utilisation du service par cet utilisateur. Le système de recommandation peut toutefois s’appuyer des caractéristiques connues sur l’utilisateur (son age, sa catégorie socio-professionnelle, son sexe, son secteur professionnel etc.) ou sur une combinaison de ses caractéristiques et de son historique. Il ne reste alors au système de recommandation qu’à trouver les autres utilisateurs partageant le plus de points communs avec cet utilisateur, analyser les items les plus commandés, partagés ou plébiscités par ces utilisateurs afin de pouvoir proposer une sélection personnalisée d’items recommandés. Les systèmes de recommandation reposent généralement sur un algorithme de clustering afin de distinguer les différents sous groupes d’utilisateurs, pouvant être entraîné en apprentissage non supervisé.
+
+\subsection{Différentes approches}
+Ils fonctionnent grâce à differentes approches\cite{ref32}:
+\begin{itemize}
+	\item Sur le contenu (content based Recomanded System (RS)).
+	\item Sur les métadonnées (content based sur les métadonnées (content based RS)).
+	\item Sur l'historique des utilisateurs (collaborative filtering).
+\end{itemize}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=180pt]{recommanded_system_1}
+	\end{center}
+	\caption{Exemple de syst\`eme de recommandation}
+	\label{Exemple de syst\`eme de recommandation}
+\end{figure}
+
+\subsubsection{Filtrage collaboratif}
+\begin{bf}Filtrage collaboratif\end{bf} est un algorithme de recommandation, c'est-à-dire un algorithme qui consiste à prédire les articles (quels qu'ils soient, des livres, des films, des articles de presse, etc.) que des utilisateurs apprécieront dans le futur.\\
+Le fonctionnement de cette approche:
+\begin{itemize}
+	\item Un utilisateur x objet(s): (user x item);
+    \item Nécessité d'un feedback utilisateur;
+    	\begin{enumerate}
+    		\item Explicite (note de 0 à 5);
+    		\item Implicite (click, achat, vue, like);
+    	\end{enumerate}
+    \item Pas besoin d'autres données;
+    \item Approches combinées et apports du \begin{bf}Deep Learning\end{bf};
+
+\end{itemize}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=140pt]{filtrage_collaboratif}
+	\end{center}
+	\caption{Filtrage collaboratif}
+	\label{Filtrage collaboratif}
+\end{figure}
+\newpage
+\subsubsection{L'avantage de cette méthode}
+Son avantage c'est qu'on n'a pas de besoin d'information confidentielle sur l'utilisateur:
+\begin{itemize}
+	\item l'âge;
+	\item le sexe;
+	\item confection religieuse
+	\item etc.
+\end{itemize}
+
+\subsubsection{Approche en mémoire}
+\begin{itemize}
+	\item User-item pour l'utilisateur \begin{bf}Mawatta\end{bf}, trouver tous les utilisateurs qui ont acheté des produits similaires et recommander les objets que ces utilisateurs ont aimé.
+	\item Item-item pour le produit ordinateur portable \begin{bf}Acer\end{bf}, trouver tous les utilisateurs ayant commander cet objet, et trouver tous les autres objets ayant été commander par ces utilisateurs.
+\end{itemize}
+
+L'importance de cette approche est qu'elle fonctionne bien sur des petits volumes comme sur des grands volumes.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=140pt]{recommandationinmemory1}
+	\end{center}
+	\caption{Approche en m\'emoire}
+	\label{Approche en m\'emoire}
+\end{figure}
+
+\subsubsection{Limites}
+\begin{itemize}
+	\item Hypothèse d'invariabilité des goûts dans le temps c'est à dire que les utilisateurs qui ont même goût aujourd'hui n'auront pas forcement les mêmes goût dans le future.
+	\item Rien à recommander aux nouveaux utilisateurs (cold start).
+	\item Effet bulle;
+\end{itemize}
+
+\section{Conclusion}
+Ce chapitre est l’une des parties, la plus importante d’un projet car avant d’entamer un projet, il est important d’explorer, étudier les concepts clés, les outils et les domaines du projet afin de le mener à bien.\\ 
+Au chapitre suivant, nous allons décrire la conception de notre solution.
+
+
+\chapter{CONCEPTION \& ENVIRONNEMENT DE TRAVAIL}
+\section{Introduction}
+Dans ce chapitre, nous allons commencer à décrire le fonctionnement de notre système par une étude générale basée sur la spécification des besoins, qui sera suivi par une étude détaillée du projet par plusieurs approches, puis nous allons aborder les aspects
+techniques liés à la phase d'implémentation de notre application. Nous présenterons l’environnement matériel et expliquerons l’architecture matérielle ensuite
+nous terminerons par la présentation de l’environnement logiciel en listant les
+choix techniques, enfin nous détaillerons les logiciels utilisés dans notre projet
+
+\section{Acteurs}
+On distingue \begin{bf}deux catégories d'acteurs\end{bf} du système d'information :
+\begin{itemize}
+  \item Les acteurs internes interviennent au sein même de l'organisation sur le système d'information. Il s'agit essentiellement du personnel des services (commercial, comptable, ressources humaines, etc.).
+  \item Les acteurs externes interviennent depuis l'extérieur de l'organisation sur le système d'information (les fournisseurs, les clients, etc.).
+ \end{itemize} 
+ 
+Dans ce projet, nous avons deux acteurs internes :
+  
+  \begin{enumerate}
+     \item \begin{bf}Prospect\end{bf} \label{acteur:prosp}: c’est l’utilisateur qui cherche un bien occasion ou nouveau pour acheter ou échanger.
+     \item \begin{bf}Propriétaire\end{bf} \label{acteur:prop}: c’est l’utilisateur qui veut vendre ou échanger son bien occasion ou nouveau.
+  \end{enumerate}
+  
+ \newpage
+\section{Besoins fonctionnels}
+Dans cette section, nous allons énumérer les besoins fonctionnels que notre système offrira aux utilisateurs.\\
+Il permettra de :
+\begin{itemize}
+  \item Rechercher des produits par image: c'est à dire l'utilisateur sélectionne une image depuis son ordinateur ou téléphone le site l'affiche les produits similaires à l'image sélectionnée.
+  \item Rechercher des produits par camera: l'utilisateur prend une photo à travers son appareil et le site l'affiche les produit semblable.
+  \item Faire des recommandation aux utilisateurs en se basant sur leurs paniers.
+\end{itemize}
+
+\section{Besoins non fonctionnels}
+Dans cette partie, nous évoquerons les différents besoins non fonctionnels que notre système offrira : 
+\begin{itemize}
+   \item Garantir la rapidité de fonctionnement de notre système.
+   \item Garantir la disponibilité du système et la tolérance aux pannes.
+   \item Faciliter l’utilisation du système.
+\end{itemize}
+
+\section{Diagramme de cas d’utilisation}
+Le diagramme des cas d’utilisation décrit les utilisations requises d’un système, ou ce qu’un système est supposé faire. Les principaux concepts de ce diagramme sont les acteurs, cas d’utilisation et sujets. Un sujet représente un système avec lequel les acteurs et autres sujets interagissent.\\ 
+Le diagramme des cas d’utilisation est un diagramme du  UML(Unified Modeling Language, ou langage de modélisation unifié)\cite{ref34} utilisé pour donner une vision globale du comportement fonctionnel d’un système logiciel.\\
+Un cas d’utilisation représente une unité discrète d’interaction entre un utilisateur (humain ou machine) et un système.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt,height=380pt]{usecas}
+	\end{center}
+	\caption{Diagramme de cas d'utilisation}
+	\label{Diagramme de cas d'utilisation}
+\end{figure}
+
+\newpage
+\section{Diagramme de classes}
+Notre application est composée des entités suivantes:
+\textbf{Utilisateur} qui est caractérisé par son nom, son prénom, son email, son téléphone, son password et son avatar et il peut ajouter zéro ou plusieurs produits, un \textbf{produit} est caractérisé par sa désignation, sa description, sa quantité disponible, son prix, le produit a une ou plusieurs images, une \textbf{image} est caractérisée par son nom, son lien, son type et le produit appartient à une catégorie, la \textbf{catégorie} est caractérisée par son nom et sa description. L'utilisateur ne peut effectuer qu'une commande à la fois et que chaque \textbf{commande} est composée d'une ou plusieurs ligneCommandes, une \textbf{ligneCommande} est caractérisée par un produit et la quantité commandée de ce produit.
+Une \textbf{boutique} est caractérisée par son nom, sa description, son image, elle contient un ou plusieurs produit et appartient à un utilisateur.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt,height=260pt]{diagramme_de_classe}
+	\end{center}
+	\caption{Diagramme de classes}
+	\label{Diagramme de classes}
+\end{figure}
+
+\newpage
+ 
+\section{Description de cas d’utilisation «Recherche du produit»}
+\begin{table}[!h]
+       \begin{center}
+		\begin{tabular}{|p{6cm}|p{10cm}|}
+        	\hline
+        	\begin{bf}Nom du cas d’utilisation\end{bf} & \begin{bf}Rechercher un produit\end{bf} \\       	
+        	\hline
+        	Préconditions & \begin{itemize} \item Système fonctionne \item  L’acteur est sur le site \end{itemize}        	 \\ 
+        	\hline
+         	Enchaînement nominal &
+         	 \begin{enumerate}
+         	 	\item L’acteur sélectionne une image
+                \item Puis valide la sélection
+                \item Le système recherche des produits similaires
+                \item Le système affiche les produits similaires
+         	 \end{enumerate} \\ 
+        	\hline
+        	Enchaînement alternatif & En (3) : message d’erreur : «Aucun produit similaire»\\
+        	\hline
+        	Exceptions & Le système affiche un message d’erreur dans le cas où le serveur ne fonctionne pas\\
+        	\hline
+        	Postconditions & Le système affiche les produits \\
+        	\hline
+		\end{tabular}
+		\end{center}
+	\caption{Description de cas d’utilisation « Recherche du produit »}
+	\label{label_that_can_be_referenced_later}
+\end{table} 
+\newpage
+\section{Environnement matériel}
+Nous allons identifier les outils matériels qui nous serviront à développer notre application dans cette section.\newline
+Notre application comme la plupart des applications d'Intélligence Artificielle  réalisées en Python, sera multiplateforme c’est à dire qu’elle fonctionnera sur (windows, linux, macos et mobile).
+
+\section{Environnement logiciel}
+Nous allons énumérer au cours de cette partie les différents outils utilisés tout
+au long de ce projet pour l’étude et la mise en place de notre application.
+
+\section{Outils, Langages et Frameworks utilisés}
+\subsection{Anaconda}
+Anaconda est une distribution scientifique de Python : c’est-à-dire qu’en installant Anaconda, vous installerez Python, Jupyter Notebook et des dizaines de packages scientifiques.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=300pt, height=90pt]{anaconda}
+	\end{center}
+	\caption{Logo Anaconda}
+	\label{Diagramme de cas d'utilisation}
+\end{figure}
+\subsection{Fonctionnalités}
+Dans cette partie, nous n'aborderons que les packages qui nous intéresse pour ce projet :
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=450pt, height=190pt]{packages}
+	\end{center}
+	\caption{Anaconda et ses dépendances}
+	\label{Anaconda et ses dépendances}
+\end{figure}
+
+\subsection{Numpy}
+La bibliothèque \begin{bf}NumPy\end{bf} permet d’effectuer des calculs numériques avec Python. Elle introduit une gestion facilitée des tableaux de nombres.
+
+\subsection{Matplotlib}
+Matplotlib est une bibliothèque complète pour permet de créer des visualisations statiques, animées et interactives en Python.
+
+Il vous permet de: 
+\begin{enumerate}
+  \item Créer des droites et graphes de qualité de publication.
+  \item Créer des figures interactives qui peuvent zoomer, faire un panoramique, mettre à jour.
+  \item Personnaliser le style visuel et la mise en page.
+  \item Exporter vers de nombreux formats de fichiers.
+  \item Intégrer dans JupyterLab et les interfaces utilisateur graphiques.
+  \item Utiliser un large éventail de packages tiers construits sur Matplotlib.
+\end{enumerate}
+
+\subsection{Sklearn}
+\begin{bf}Scikit-learn\end{bf}, encore appelé \begin{bf}sklearn\end{bf}, est la bibliothèque la plus puissante et la plus robuste pour le Machine Learning en Python. Elle fournit une sélection d’outils efficaces pour l’apprentissage automatique et la modélisation statistique, notamment la classification, la régression et le clustering via une interface cohérente en Python. Cette bibliothèque, qui est en grande partie écrite en Python, s’appuie sur \begin{bf}NumPy, SciPy et Matplotlib\end{bf}.
+
+\newpage
+\subsection{Jupyter}
+Le notebook\cite{ref20} est un outil de travail devenu très populaire dans les milieux académique et scientifique pour pouvoir facilement travailler sur du code encore au stade de prototype.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=250pt, height=160pt]{notebook}
+	\end{center}
+	\caption{Jupyter notebook}
+	\label{Jupyter notebook}
+\end{figure}
+
+\subsection{Tensorflow}
+La principale bibliothèque Open Source\cite{ref19} pour le développement et l'entraînement de modèles de Machine Learning. 
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=250pt, height=160pt]{tensorflow}
+	\end{center}
+	\caption{Framework Tensorflow}
+	\label{Framework Tensorflow}
+\end{figure}
+\newpage
+\subsection{Keras}
+Keras \cite{ref21} est une bibliothèque open source écrite en Python (sous licence MIT) basée principalement sur les travaux du développeur de Google François Chollet dans le cadre du projet ONEIROS (Openended Neuro-Electronic Intelligent Robot Operating System). Une première version du logiciel multiplateforme a été publiée le 28 mars 2015. Le but de cette bibliothèque est de permettre la constitution rapide de réseaux neuronaux. Dans ce cadre, Keras ne fonctionne pas comme un framework propre mais comme une interface de programmation applicative (API) pour l’accès et la programmation de différents frameworks d’apprentissage automatique. Theano, Microsoft Cognitive Toolkit (anciennement CNTK) et TensorFlow font notamment partie des frameworks pris en charge par Keras.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=100pt]{keras}
+	\end{center}
+	\caption{Framework keras}
+	\label{Framework keras}
+\end{figure}
+
+\subsection{Github Et Git}
+\begin{itemize}
+	\item \begin{bf}Git\end{bf} : est un logiciel de gestion de versions décentralisé. C’est un logiciel libre créé par Linus Torvalds, auteur du noyau Linux, et distribué selon les termes de la licence publique générale GNU version 2. En 2016, il s’agit du logiciel de gestion de versions le plus populaire qui est utilisé par plus de douze millions de personnes. 
+	\item \begin{bf}Github\end{bf} : est un service en ligne qui permet d’héberger ses repositories de code. GitHub est un outil gratuit pour héberger du code open source, et propose également des plans payants pour les projets de code privés. C’est le numéro 1 mondial et il héberge plus d’une dizaine de millions de repositories.
+\end{itemize}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=60pt]{github}
+	\end{center}
+	\caption{Outil Git Et Github}
+	\label{Outil Git Et Github}
+\end{figure}
+\newpage
+\subsection{Google Colaboratory}
+\begin{bf}Google Colab\end{bf}\cite{ref22} ou aussi appelé \begin{bf}Colaboratory\end{bf} est un service dans le cloud, proposé par Google gratuitement. Il est basé sur l’environnement Jupyter Notebook et est destiné à la formation et à la recherche en apprentissage automatique.\\
+
+Cette plateforme permet de former des modèles de \begin{bf}Machine Learning\cite{ref15}\end{bf} directement dans le cloud. Il n’est pas nécessaire de l’installer sur l’ordinateur, les ressources informatiques peuvent donc être utilisées pour d’autres tâches. \\
+
+Colab nous permet d’effectuer les opérations suivantes :
+\begin{enumerate}
+	\item Écrire et exécuter du code en \begin{bf}Python\end{bf}.
+    \item Coder des documents qui prennent en charge les équations mathématiques.
+    \item Créer et partager des cahiers.
+    \item Importer et enregistrer des fichiers depuis \begin{bf}Google Drive\end{bf}.
+    \item Importer et publier des blocs-notes depuis \begin{bf}Github\end{bf}.
+    \item Utiliser le \begin{bf}GPU\end{bf} pour Google.
+\end{enumerate}
+
+\subsection{Framework Flask}
+Flask est un microframework né d'une blague. il est Open source, il se différencie par sa légèreté permettant de disposer d'une solide base de développement tout en conservant la flexibilité et la lisibilité du langage de programmation Python. Facile à prendre en main, il optimise le processus de développement. Il accompagne ainsi les entreprises dans leurs besoins en applications web de petite et moyenne envergure.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=100pt]{logo_flask}
+	\end{center}
+	\caption{Micro Framework flask}
+	\label{Micro Framework flask}
+\end{figure}
+
+\section{Préparation du Backlog produit}
+Cette partie est l'une des parties la plus importantes de la méthode Scrum. Le backlog produit présente toutes les fonctionnalités du produit selon une priorité et les exigences souhaitées par le client.
+
+\begin{table}[!h]
+       \begin{center}
+		\begin{tabular}{|p{0.5cm}|p{6cm}|p{7cm}|p{2.2cm}|}
+        	\hline
+        	\begin{bf}no\end{bf} & \begin{bf} ID\_Tâche \end{bf} & \begin{bf} Tâche \end{bf} & \begin{bf}Estimation \newline Semaine \end{bf} \\       	
+        	\hline
+        	1 & Préparation de l’environnement & Installation des outils et logiciels & 2 \\ 
+        	\hline
+        	2 & WebScraping & Récupération des données & 3 \\ 
+        	\hline
+        	3 & Data preprocessing & Nettoyage de données & 3 \\ 
+        	\hline
+        	4 & Développement de l’application de reconnaissance et de recommandation & Développement des modèles de reconnaissance (DNN, RNN, CNN, LSTM) et Content-based   & 3 \\ 
+        	\hline
+        	5 & API Flask & Création d’une API pour consommer le modèle & 3 \\ 
+        	\hline
+		\end{tabular}
+		\end{center}
+	\caption{Produit backlog}
+	\label{Produit backlog}
+\end{table} 
+\section{Architecture d’un réseau neuronal}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{archcnn}
+	\end{center}
+	\caption{Architecture des réseaux de neurones}
+	\label{Architecture des réseaux de neurones}
+\end{figure}
+
+Les architectures\cite{ref29} ont leurs forces et faiblesses et peuvent être combinées pour optimiser les résultats. Le choix de l’architecture s'avère ainsi crucial et il est déterminé principalement par l'objectif 
+
+Les architectures de réseaux neuronaux peuvent être divisées en 4 grandes familles :
+\begin{itemize}
+	\item Réseaux de neurones Feed fowarded.
+    \item Réseaux de neurones récurrent (RNN).
+    \item Réseaux de neurones à résonance.
+    \item Réseaux de neurones auto-organisés.
+\end{itemize} 
+Dans notre cas, nous allons utiliser les architectures de type \begin{bf}Réseaux de neurones Feed fowarded\end{bf} et plus particulièrement « \begin{bf}réseaux neuronaux convolutifs\end{bf} »
+ 
+\begin{bf}Feed-forwarded\end{bf}\cite{ref24} fait tout simplement référence à la procédure du traitement de la donnée par le réseau neuronal. En effet, \begin{bf}Feed-forwarded\end{bf} (propagation avant) signifie tout simplement que la donnée traverse le réseau d’entrée à la sortie sans retour en arrière de l’information.
+Typiquement, dans la famille des réseaux à propagation avant, on distingue les réseaux mono-couches (perceptron simple) et les réseaux multicouches (perceptron multicouche).
+Le perceptron simple\cite{ref23} est dit simple parce qu’il ne dispose que de deux couches ; la couche en entrée et la couche en sortie. Le réseau est déclenché par la réception d’une information en entrée. Le traitement de la donnée dans ce réseau se fait entre la couche d’entrée et la couche de sortie qui sont toutes reliées entre elles. Le réseau intégral ne dispose ainsi que d’une matrice de poids. Le fait de disposer d’une seule matrice de poids limite le perceptron simple à un classificateur linéaire permettant de diviser l’ensemble d’informations obtenues en deux catégories distingues.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{perceptronsimple}
+	\end{center}
+	\caption{Perceptron simple ou Deep Neural Network (DNN)}
+	\label{Perceptron simple ou Deep Neural Network (DNN)}
+\end{figure}
+
+Pour le traitement d’informations complexes et très variées, il est envisageable de créer plu-sieurs réseaux de neurones distincts dédiés à traiter chacun une partie de l’information. Ces réseaux de neurones sont appelés des réseaux neuronaux convolutifs (\begin{bf}Convolutional Neural Networks\end{bf}). Ces réseaux peuvent être imaginés comme une compilation d’un segment d’informations pour au final traiter l’ensemble de l’information (par exemple le traitement d’image, de vidéos, de textes).
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=400pt, height=100pt]{convolution}
+	\end{center}
+	\caption{Architecture d'un Convolutional Neural Network (CNN)}
+	\label{Architecture d'un Convolutional Neural Network (CNN)}
+\end{figure}
+\section{Conclusion}
+
+Dans ce chapitre, nous avons expliqué le plan de travail, les besoins fonctionnels et non fonctionnels, la modélisation UML du système. Nous avons présenté différents diagrammes : les diagrammes de cas d’utilisation, de classes, ensuite la description détaillée d'un cas d'utilisation. le rôle de chaque acteur ainsi que le backlog produit tout en décrivant l’architecture de notre système.\\
+Dans le prochain chapitre, nous discuterons de la mise en place des différentes étapes de la
+solutions proposées.
+
+
+\chapter{MISE EN \OE{}UVRE }
+\section{Introduction}
+Nous arrivons maintenant à la phase final. Cette dernière partie qui est la plus importante puisqu’elle met en réalité toute la théorie précédente. Nous commencerons par la deuxième <<Release>> qui est le \textbf{Webscraping}, puis la troisième \textbf{Data preprocessing}, ensuite la quatrième \textbf{Développement de l'algorithme de Vision par ordinateur} et terminons par les tests.
+
+\section{Webscraping}
+\subsection{Récupération des urls des images sur google}
+\begin{lstlisting}
+let liens = document.querySelectorAll(".ZZ7G7b");
+urls = [];
+for(let i=0; i<liens.length; i++) {
+    urls.push(liens[i].href)
+}
+
+\end{lstlisting}
+\begin{enumerate}
+	\item \textbf{ligne 1}: recuperation de tous les liens qui ont la classe \textbf{ZZ7G7b};
+	\item \textbf{ligne 2}: Création d'un tableau vide qui contiendra les urls des images;
+	\item \textbf{ligne 3 à 5}: nous permet de remplir le tableaux d'urls;
+\end{enumerate}
+\newpage
+\subsection{Enregistrement des urls dans un fichier texte}
+
+\begin{lstlisting}
+// Création du nom du fichier
+let fichier = document.querySelector("input.og3lId").value;
+fichier = fichier.replace(" ", "_")
+
+// Téléchargement des images
+const telecharger = (contenu, nomDuFichier, contentType) => {
+ const a = document.createElement("a");
+ const fichier = new Blob([contenu], { type: contentType });
+ a.href = URL.createObjectURL(fichier);
+ a.download = nomDuFichier;
+ a.click();
+}
+
+//Enregistrement du fichier
+const lancerTelechargement = () => telecharger(JSON.stringify(texte), fichier+".txt", "text/plain");
+lancerTelechargement()
+\end{lstlisting}
+
+\section{Enregistrement des images}
+\subsection{Importation des packages}
+\begin{lstlisting}
+import os
+import urllib
+import argparse
+from time import sleep
+import requests as req
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+\end{lstlisting}
+
+\begin{enumerate}
+	\item \textbf{os}: est le package qui nous permet d'effectuer les opérations de traitement des fichier en python(lecture, écriture, création,etc);
+	\item \textbf{urllib}: est le package de gestion d’\textbf{URL} pour python. Il est utilisé pour récupérer des URL (Uniform Resource Locators).
+	\item \textbf{tqdm}\cite{ref35} nous permet de gerer les bars de progression pendant les téléchargement
+\end{enumerate}
+
+\newpage
+\subsection{Création des arguments du script}
+Dans cette section, nous allons spécifier tous les arguments que nous auront besoin pour exécuter notre script pour le \textbf{webscraping}. Il est à noter que tous les arguments sont optionnels.
+
+\begin{lstlisting}
+ap = argparse.ArgumentParser()
+ap.add_argument("-l", "--lien", required=False,
+                help="nous permet de spécifier le chemin d'accès au fichier d'url pour le web scraping d'image")
+ap.add_argument("-n", "--numero", required=False,
+                help="nous permet de spécifier la numérotation à partir de laquelle le nom des images debute")
+
+ap.add_argument("-u", "--nombreUrl", required=False,
+                help="nous permet de spécifier le nombre d'URL à traiter")
+
+ap.add_argument("-i", "--imageSize", required=False,
+                help="nous permet de spécifier le nombre d'image à enregistrer")
+args = vars(ap.parse_args())
+\end{lstlisting}
+
+\subsection{Lecture du fichier d'url pour les images}
+Nous allons récupérer le fichier d'url que nous avons créé précédemment dans la section précédente.
+\begin{lstlisting}
+pbar = tqdm(total=100)
+fichier = args["lien"]
+urls = []
+if fichier == None:
+    fichier = "./url.txt"
+    print("TRAITEMENT DES URLS DES IMAGES...")
+    with open(fichier, "r") as f:
+        urls = f.readlines()
+else:
+    print("TRAITEMENT DES URLS DES IMAGES...")
+    with open(fichier, "r") as f:
+        urls = f.readlines()[0].split("<==>")
+    nbr_url = len(urls)-1
+    if args['nombreUrl'] != None:
+        nbr_url = int(args['nombreUrl'])
+    print("*********", args['nombreUrl'])
+    for i, url in enumerate(urls[1:nbr_url]):
+        if i == 0 or i == len(urls)-1:
+            urls.append(url)
+        else:
+            urls.append(url)
+        pbar.update(8)
+urls = urls[1: len(urls)-1]
+\end{lstlisting}
+
+\subsection{Récupération des images sur google}
+Nous allons maintenant récupérer les images, mais pour chaque url, nous aurons 21 images.
+\begin{lstlisting}
+
+def get_url_article_google(urls=urls):
+    url_camera_surveillance_details = []
+    print("TELECHARGEMENT DES IMAGES..........")
+    imageSize = len(urls)
+    if args['imageSize'] != None:
+        imageSize = int(args["imageSize"])
+    for url in tqdm(urls[: imageSize]):
+        try:
+            response = req.get(url)
+            page_contents = response.content
+            if response.status_code != 200:
+                raise Exception('Failed to load page {}'.format(url))
+            doc = BeautifulSoup(page_contents, "html.parser")
+            for item in tqdm(doc.find_all("img")):
+                try:
+                    url_camera_surveillance_details.append(f"{item['src']}")
+                except:
+                    pass
+            sleep(8)
+        except:
+            pass
+    return url_camera_surveillance_details
+
+\end{lstlisting}
+
+\newpage
+\subsection{Enregistrement des images sur google}
+Sachant qu'on a dix urls et que chaque url donne 21 images donc nous aurons 10x21 ce qui nous donne 210.
+\begin{lstlisting}
+def download_image_from_google(star_num_file_name=numero_fichier, urls=urls, docs=doc):
+    if os.path.exists(os.path.join('images/', docs)):
+        pass
+    else:
+        os.makedirs(os.path.join('images/', docs))
+    for i, url in tqdm(enumerate(urls)):
+        try:
+            fullname = 'images/' + docs + '/' + \
+                str((i+int(star_num_file_name)))+'.jpg'
+            urllib.request.urlretrieve(url, fullname)
+        except:
+            pass
+    print("Téléchargement terminé.....")
+download_image_from_google()
+\end{lstlisting}
+
+\subsection{Affichage des aides du script}
+\begin{lstlisting}
+python get_image_from_google.py -h
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=200pt]{help}
+	\end{center}
+	\caption{Affichage des aides du script}
+	\label{Affichage des aides du script}
+\end{figure} 
+\newpage
+\subsection{Exécution du script}
+\begin{lstlisting}
+python get_image_from_google.py -l ../urls/maison.txt
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=250pt]{save_image}
+	\end{center}
+	\caption{Exécution du script}
+	\label{Exécution du script}
+\end{figure} 
+\section{Data preprocessing}
+Le package \textbf{splitfolders} nous permet de partitionner notre dossier image source en trois sous dossier:
+\begin{enumerate}
+	\item \textbf{train}: le dossier qui contiendra les images d'entrainement;
+	\item \textbf{test}: le dossier qui contiendra les images de test;
+	\item \textbf{val}: le dossier qui contiendra les images de validation;
+\end{enumerate}
+\begin{lstlisting}
+import argparse
+import splitfolders
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-s", "--source", required=False,
+                help="nous permet de spécifier le chemin d'accès aux fichiers source")
+ap.add_argument("-d", "--destination", required=False,
+                help="nous permet de créer le dossier d'accès aux fichiers de destination")
+
+args = vars(ap.parse_args())
+
+source = "images"
+if args["source"] != None:
+    source = args["source"]
+
+destination = "data"
+if args["destination"] != None:
+    destination = args["destination"]
+
+splitfolders.ratio(
+    input=source,
+    output=destination,
+    seed=1337,
+    ratio=(.8, 0.1, 0.1)
+)
+\end{lstlisting}
+
+La méthode \textbf{ratio()}: prend quatre paramètres:
+\begin{enumerate}
+	\item \textbf{input}: nous permet d'indiquer le dossier source des images;
+	\item  \textbf{output}: nous permet d'indiquer le dossier de sortie pour l'entrainement;
+	\item \textbf{ratio}: prend un tuple dont la valeur:
+	\begin{itemize}
+		\item du premier élément correspond au pourcentage des images d'entrainement;
+		\item du deuxième élément correspond au pourcentage des images
+		de test;
+		\item du troisième élément correspond au pourcentage des images de validation;
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Chargement des données}
+\begin{lstlisting}
+base_dir = './data_4'
+train_dir = os.path.join( base_dir, 'train')
+test_dir = os.path.join( base_dir, 'test')
+validation_dir = os.path.join( base_dir, 'val')
+\end{lstlisting}
+
+\subsection{Standardisation \& augmentation de données}
+La standardisation est l'une des étapes la plus importante dans la phase de data preprocessing, car les algorithmes de \textbf{Deep Learning} se basent sur l'algorithme de \textbf{gradient descente}\cite{ref36}.
+\begin{lstlisting}
+train_datagen = ImageDataGenerator(rescale = 1.0/255,
+                                   rotation_range = 50,
+                                   width_shift_range = 0.3,
+                                   height_shift_range = 0.3,
+                                   shear_range = 0.3,
+                                   zoom_range = 0.3,
+                                   horizontal_flip = True)
+
+test_datagen = ImageDataGenerator( rescale = 1.0/255 )
+                                 
+validation_datagen = ImageDataGenerator( rescale = 1.0/255 )
+
+\end{lstlisting}
+
+\begin{itemize}
+	\item \textbf{rescale}: permet de mettre à l'échelle les pixels des images;
+	\item \textbf{rotation}: l'angle de rotation maximale des images, une augmentation de la rotation fait pivoter l'image de manière aléatoire dans le sens des aiguilles d'une montre d'un nombre donné de degrés de 0 à 50. La rotation fera probablement pivoter les pixels;
+	\item \textbf{width\_shift\_range}: nombre entier de pixels de l'intervalle (-width\_shift\_range, +width\_shift\_range) - Avec width\_shift\_range=2 les valeurs possibles sont des entiers [-1, 0, +1], comme avec width\_shift\_range=[-1, 0, +1], tandis qu'avec width\_shift\_range =1.0 les valeurs possibles sont des flottants dans l'intervalle [-1.0, +1.0];
+	\item etc\cite{ref37}.
+\end{itemize}
+\subsection{Création des données de training, test \& validation}
+Lors de la formation et de l'évaluation de modèles d'apprentissage en profondeur dans Keras, la génération d'un ensemble de données à partir de fichiers image stockés sur disque est simple et rapide. Appelez \begin{bf}flow\_from\_directory()\end{bf} pour lire à partir du répertoire et créer des ensembles de données d'apprentissage et de validation.
+
+Si vous spécifiez une répartition de validation, vous devrez également spécifier le sous-ensemble pour chaque portion. Définissez simplement l'ensemble d'entraînement sur \begin{bf}train\_dir\end{bf} l'ensemble des images de test sur \begin{bf}test\_dir\end{bf} et l'ensemble de validation sur \begin{bf}validation\_dir\end{bf}.
+\begin{lstlisting}
+train_generator = train_datagen.flow_from_directory(train_dir,
+                                                    batch_size = 20,
+                                                    class_mode = 'categorical', 
+                                                    target_size = (150, 150))
+                                                    
+ 
+test_generator = test_datagen.flow_from_directory( test_dir,
+                                                          batch_size  = 20,
+                                                          class_mode  = 'categorical', 
+                                                          target_size = (150, 150))
+                                                          
+
+validation_generator = test_datagen.flow_from_directory( validation_dir,
+                                                          batch_size  = 20,
+                                                          class_mode  = 'categorical', 
+                                                          target_size = (150, 150))                                                                                                              
+\end{lstlisting}
+
+\begin{itemize}
+    \item \textbf{batch\_size}: la taille du lot définit le nombre d'échantillons qui seront propagés sur le réseau;
+	\item \textbf{class\_mode}: nous indique le mode de classification à savoir \textbf{binaire} ou multi \textbf{categorical};
+	\item \textbf{target\_size}: nous indique les dimensions des images  hauteur et largeur;
+\end{itemize} 
+
+Jetons maintenant un coup d'œil à certaines des images de l'ensemble d'entraînement 
+
+\begin{lstlisting}
+class_names = train_dataset.class_names
+
+plt.figure(figsize=(10, 10))
+for images, labels in train_dataset.take(1):
+    for i in range(9):
+        ax = plt.subplot(3, 3, i + 1)
+        plt.imshow(images[i].numpy().astype("uint8"))
+        plt.title(class_names[labels[i]])
+        plt.axis("off")
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=160pt]{echantillon_train}
+	\end{center}
+	\caption{Images de training}
+	\label{Images de training}
+\end{figure}
+\subsection{Augmentation de données}
+Implémentons une fonction pour l'augmentation des données. Utilisons un modèle de \textbf{keras Sequential} composé de 2 couches : \textbf{RandomFlip('horizontal')}, \textbf{Rotation aléatoire (0.2)}.
+\begin{lstlisting}
+def data_augmenter():
+    '''
+    Créer un modèle séquentiel composé de 2 calques
+    Retour:
+        tf.keras.Sequential
+    '''
+    ### COMMENCEZ LE CODE ICI
+    data_augmentation = tf.keras.Sequential()
+    data_augmentation.add(RandomFlip("horizontal"))
+    data_augmentation.add(RandomRotation(0.2))
+    ### FIN DU CODE ICI
+    return data_augmentation
+\end{lstlisting}
+Jetons un œil à la façon dont une image de l'ensemble d'apprentissage a été augmentée avec des transformations simples :
+D'un produit à 6 variantes de ce produit, en trois lignes de code. Maintenant, notre modèle a beaucoup plus à apprendre.
+\begin{lstlisting}
+augmenter = data_augmenter()
+for image, _ in train_dataset.take(1):
+    plt.figure(figsize=(10, 10))
+    first_image = image[4]
+    for i in range(6):
+        ax = plt.subplot(3, 3, i + 1)
+        augmented_image = data_augmentation(tf.expand_dims(first_image, 0))
+        plt.imshow(augmented_image[0] / 255)
+        plt.axis('off')
+\end{lstlisting}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=150pt]{augmenter}
+	\end{center}
+	\caption{Images traitées}
+	\label{Images traitées}
+\end{figure}
+\newpage
+\section{Création de modèle}
+\subsection{Transfer learning}
+L'entrainement des modèles de réseaux de neurones à convolution profonde peut prendre des jours, voire des semaines, pour s'entraîner sur de très grands ensembles de données.
+
+Un moyen de raccourcir ce processus consiste à réutiliser les poids du modèle à partir de modèles pré-formés qui ont été développés pour des ensembles de données de référence de vision par ordinateur standard, tels que les tâches de reconnaissance d'images \textbf{ImageNet, Inception}. Les modèles les plus performants peuvent être téléchargés et utilisés directement, ou intégrés dans un nouveau modèle pour nos propres problèmes de vision par ordinateur ce processus est appelé \textbf{Transfer Learning}.
+
+\subsection{Configuration de modèle pré-entraîné}
+Nous devrons préparer un modèle pré-entraîné et configurer les couches dont nous avons besoin. Pour cet exercice, nous utiliserons les couches de convolution de l'architecture \textbf{InceptionV3}\cite{ref38} comme modèle de base. Pour ce faire, nous devons :
+\begin{enumerate}
+	\item Définir la forme d'entrée pour l'adapter à notre application. Dans ce cas, réglons-le sur 150 x 150 x 3.
+
+\item Choisir et figer les calques de convolution pour tirer parti des fonctionnalités qu'il a déjà apprises.
+
+\item Ajouter des couches denses que nous entraînerons.
+
+\end{enumerate}
+
+Tout d'abord, lors de la préparation de l'entrée du modèle, nous souhaitons récupérer les poids pré-entraînés du modèle \textbf{InceptionV3}\cite{ref38} et supprimer la couche entièrement connectée à la fin, car nous la remplacerons plus tard. Nous spécifierons également la forme d'entrée que notre modèle acceptera. Enfin, nous souhaitons geler les poids de ces calques car ils ont déjà été entraînés.
+
+\subsection{Téléchargement du modèle Inception}
+Téléchargeons les poids pré-entraînés. \textbf{No top} signifie qu'il exclut la couche entièrement connectée qu'il utilise pour la classification.
+\begin{lstlisting}
+ !wget --no-check-certificate \
+     https://storage.googleapis.com/mledu-datasets/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5 \
+     -O /tmp/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5
+
+\end{lstlisting}
+\subsection{Récuperation des poids}
+\begin{lstlisting}
+from tensorflow.keras.applications.inception_v3 import InceptionV3
+from tensorflow.keras import layers
+
+# Définissez le fichier de poids que nous avons téléchargé dans une variable
+local_weights_file = `./../data/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5\`
+
+# itialisons le modèle de base.
+# Définissons la forme d`entrée et supprimons les couches denses.
+pre_trained_model = InceptionV3(input_shape = (150, 150, 3), 
+                                include_top = False, 
+                                weights = None)
+
+# Chargons les poids pré-entraînés que nous avons téléchargés.
+pre_trained_model.load_weights(local_weights_file)
+
+# Geler les poids des calques.
+for layer in pre_trained_model.layers:
+  layer.trainable = Fals
+\end{lstlisting}
+
+Nous pouvons voir le résumé du modèle ci-dessous. Nous pouvons voir que c'est un réseau très profond. Nous pouvons ensuite sélectionner jusqu'à quel point du réseau nous souhaitons utiliser. Nous utiliserons jusqu'à \textbf{mixed\_9} comme modèle de base et ajouterons à cela. En effet, la dernière couche d'origine peut être trop spécialisée dans ce qu'elle a appris, de sorte qu'elle peut ne pas bien se traduire dans notre application. \textbf{mixed\_9} en revanche sera plus généralisé et nous pourrons commencer par cela pour notre application. Après l'exercice, nous n'hésiterons pas à modifier et à utiliser d'autres calques pour voir les résultats que nous obtenons.
+
+\subsection{Résumé des poids du modèle}
+\begin{lstlisting}
+pre_trained_model.summary()
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=90pt]{summary}
+	\end{center}
+	\caption{Calque mixed}
+	\label{Calque mixed}
+\end{figure}
+\newpage
+\subsection{Modèle final pour la classification}
+Ensuite, nous ajouterons des couches denses à notre modèle. Ce seront les couches que nous entraînerons et qui seront chargées de reconnaître les produits sur \textbf{Makityfan}. Nous ajouterons également des couches \textbf{Dropout} pour régulariser la sortie et éviter le surajustement.
+
+\begin{lstlisting}
+last_layer = pre_trained_model.get_layer(`mixed9`)
+last_output = last_layer.output
+x = Flatten()(last_output)
+
+# Ajoutons une couche entièrement connectée avec 1024 unités cachées et activation ReLU
+x = Dense(1024, activation=keras.layers.ReLU())(x)
+
+# Ajoutons un taux abandon de 0,1
+x = Dropout(0.1)(x) 
+
+# Ajoutons une couche entièrement connectée avec 512 unités cachées et activation ReLU
+x = Dense(512, activation=keras.layers.ReLU())(x)
+
+# Ajoutons un taux abandon de 0,1
+x = Dropout(0.1)(x)
+
+# Ajoutons une couche entièrement connectée avec 256 unités cachées et activation ReLU
+x = Dense(256, activation=keras.layers.ReLU())(x)
+
+# Ajoutons un taux abandon de 0,1
+x = Dropout(0.1)(x) 
+
+# Ajoutons une couche softmax finale pour la classification
+x = Dense(n_classes, activation=keras.layers.Softmax())(x)           
+
+
+# Ajouter le réseau dense au modèle de base
+model = Model(pre_trained_model.input, x) 
+
+# Imprimons le résumé du modèle. Voyons votre réseau dense connecté à la fin.
+model.summary()
+
+\end{lstlisting}
+\newpage
+\subsection{Contrôle de performance du modèle}
+\begin{lstlisting}
+# Définissons une classe de rappel qui arrête entraînement une fois que la précision atteint 99,9 %
+class myCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs={}):
+        if(logs.get(`accuracy`)>0.999):
+            print(``\nAtteint 99.9 % de précision, donc annulation de l`entraînement !``)
+            self.model.stop_training = True
+\end{lstlisting}
+
+\subsection{Compilation du modèle}
+
+\begin{lstlisting}
+model.compile(optimizer=RMSprop(learning_rate=1e-4),
+              loss='categorical_crossentropy',
+              metrics=['accuracy']
+            )
+\end{lstlisting}
+
+\subsection{Entra\^i{}nement du modèle}
+Avec cela, nous pouvons maintenant former le modèle. Nous ferons 25 époques et tracerons ensuite les résultats.
+
+\begin{lstlisting}
+callbacks = myCallback()
+history = model.fit(train_generator,
+                    epochs=25,
+                    validation_data = validation_generator, 
+                    callbacks=callbacks
+)
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=520pt]{accuracy}
+	\end{center}
+	\caption{Performance du modèle}
+	\label{Performance du modèle}
+\end{figure}
+
+\subsection{Graphiques de performance \& de perte}
+\begin{lstlisting}
+# Traçons les précisions de formation et de validation pour chaque époque
+
+acc = history.history['accuracy']
+val_acc = history.history['val_accuracy']
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+
+epochs = range(len(acc))
+
+plt.plot(epochs, acc, 'r', label='Training accuracy')
+plt.plot(epochs, val_acc, 'b', label='Validation accuracy')
+plt.title('Training and validation accuracy')
+plt.legend(loc=0)
+plt.savefig('history_images/model_86_16_150x150.png')
+plt.show()
+\end{lstlisting}
+ \begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=400pt,height=170pt]{performance}
+	\end{center}
+	\caption{Performance en pourcentage}
+	\label{Performance en pourcentage}
+\end{figure}      	
+      	 
+\begin{lstlisting}
+epochs = range(len(acc))
+
+plt.plot(epochs, loss, 'r', label='Training loss')
+plt.plot(epochs, val_loss, 'b', label='Validation loss')
+plt.title('Training and validation loss')
+plt.legend(loc=0)
+plt.savefig('history_images/model_86_16_150x150loss.png')
+plt.show()
+\end{lstlisting}
+        
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{loss}
+	\end{center}
+	\caption{Perte}
+	\label{Perte}
+\end{figure}
+        	
+\newpage
+\subsection{Matrice de confusion}
+\begin{lstlisting}
+from sklearn.metrics import confusion_matrix , classification_report, plot_confusion_matrix
+from keras.preprocessing import image as IMG
+def predict(image_url='test/as1.jpg', model=model1):
+    # predicting images
+    fn = image_url
+    img = IMG.load_img(fn, target_size=(150, 150))
+    x = IMG.img_to_array(img)
+    x = x/255
+    x = np.expand_dims(x, axis=0)
+    images = np.vstack([x])
+    resulat = model.predict(images, batch_size=10)
+    percent = resulat.max()
+    label = classes[np.argmax(resulat)]
+    return (label, np.argmax(resulat))
+y_pred = []
+for file in test_generator.filenames:
+    y_pred.append(predict(f'data_5/test/{file}')[1])
+label = test_generator.classes
+label
+cm = tf.math.confusion_matrix(labels=test_generator.classes,predictions=y_pred)
+import seaborn as sn
+plt.figure(figsize = (16, 16))
+sn.heatmap(cm[:15, :15], annot=True, fmt='d')
+plt.xlabel('Prediction')
+plt.ylabel('Vraie')
+plt.savefig('ratio/model_86_16_150x150ratio.png')
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=500pt, height=390pt]{confusion_matrix}
+	\end{center}
+	\caption{Matrice de confusion}
+	\label{Matrice de confusion}
+\end{figure}
+
+
+
+\section{Création d'API en Flask}
+Une \textbf{API}\cite{ref39} est un ensemble de définitions et de protocoles qui facilite la création et l'intégration de logiciels d'applications. Elle est parfois considérée comme un contrat entre un fournisseur d'informations et un utilisateur d'informations, qui permet de définir le contenu demandé au consommateur (l'appel) et le contenu demandé au producteur (la réponse)
+
+\section{Point de terminaison (endpoint) de prédiction}
+\label{section:endpoint}
+Un \textbf{point de terminaison}(endpoint)\cite{ref40} est un endroit de l’\textbf{API} où l’échange a lieu. Les points de terminaison sont des \textbf{URI} (Uniform Resource Indices) sur une API auxquels une application peut accéder aux données.
+\begin{lstlisting}
+@app.route('/fichiers', methods=['GET', 'POST'])
+@cross_origin()
+def upload():
+    # vérifier si la demande de publication contient la partie fichier
+    if 'file' not in request.files:
+        print('no file')
+        return redirect(request.url)
+    file = request.files['file']
+    # si l`utilisateur ne sélectionne pas le fichier, le navigateur aussi
+    # soumettre une partie vide sans nom de fichier
+    if file.filename == '':
+        print('no filename')
+        return redirect(request.url)
+    else:
+        print(file.filename)
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        file_path = UPLOAD_FOLDER + '/' + filename
+        label, pourcentage = predict(image_url=file_path)
+
+        fic = "http://localhost:5000/static/" + filename
+    return jsonify(
+        fichier=fic,
+        label=label,
+        pourcentage='{:.2f}%'.format(pourcentage*100)
+    )
+\end{lstlisting}
+
+\section{Intégration à l'application frontend}
+Une fois que l'utilisateur sélectionne une image dans son appareil, au niveau du service produit dans \textbf{angular}, nous implémentons une méthode qui prendra cette image en paramètre et la fournira au endpoint [~\ref{section:endpoint}] de notre \textbf{API Flask} puis elle retourne le résultat avec le label, le lien, et le pourcentage.
+\begin{lstlisting}
+rechercheProduit(fichier:File): Observable <any>{
+    let formData: FormData =new FormData();
+    formData.append("file",fichier);
+    return this.httpClient.post<any>("http://localhost:5000/fichiers",formData);
+  }
+\end{lstlisting}
+
+Nous aurons également une autre méthode dans le composant recherche qui fera appel à notre \textbf{API NodeJS} qui retournera les produits correspondent à \textbf{label}.
+
+\begin{lstlisting}
+ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+    this.label = params['label'];
+    this.pourcentage = params["pourcentage"];
+    this.image = params["image"];
+    this.produitService
+         .rechercherProduits(this.label)
+        .subscribe(
+          response=>{ this.produits = response.produits; console.log(this.produits) },
+          erreur => this.erreurAnnonce = erreur )
+  });
+}
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=500pt, height=230pt]{select_image}
+	\end{center}
+	\caption{Recherche de produits par image}
+	\label{Recherche de produits par image}
+\end{figure}
+
+\newpage
+\section{Système de recommandation}
+Il s'agit d'un cas très classique d'algorithme utilisé dans le web marketing. Un client choisit et met dans ses favoris un article, ou dans son panier. Le site lui propose des articles compatibles, ou similaires. La recommandation peut être basée sur la description de ces articles. L'algorithme va alors chercher les articles qui ont le plus de points communs dans leur description; c'est à dire le plus de mots communs dans leur description.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=500pt]{articlesCompatibles}
+	\end{center}
+	\caption{Produits similaires}
+	\label{Produits similaires}
+\end{figure}
+\subsection{Tokenisation}
+La première étape pour calculer les similarités consiste à découper les descriptions en listes de mots (c'est la \textbf{tokenisation}) puis à prendre les racines des mots c'est à dire les \textbf{stems}.
+\begin{lstlisting}
+import re
+def decoupe(texte):
+    """
+    utilise une expression regulière pour découper le texte (en paramètre) : 
+    - le découpage se fait en fonction de ; ou , ou ' ou \n ou un (ou +) espaces
+    - on conserve enfin les stems qui font 4 caractères ou plus
+    la fonction retourne une liste de stems
+    un stem peut être présent plusieurs fois dans la liste retournée
+    """
+    texte_decoupe = list(re.split('; |, |\' |\n |\s+',texte))
+    texte_mini=[]
+    for t in texte_decoupe:
+        match = re.match('[a-z]{4,}',t)
+        if match!=None:
+            texte_mini.append(match.group(0))
+    return texte_mini
+    
+# on créé une liste contenant les articles : 
+col = list(df.keys())
+# on créé une liste (descriptif) contenant, pour chaque article, une liste avec TOUS les mots retenus dans la description
+descriptif = []
+for cle in col:
+    desc = df[cle][0]
+    descriptif.append(decoupe(desc))
+
+\end{lstlisting}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt]{decoupe}
+	\end{center}
+	\caption{Tokenisation}
+	\label{Tokenisation}
+\end{figure}
+
+\subsection{Vecteurs}
+L'étape suivante consiste à stocker chacune des descriptions traitées sous forme de vecteurs en base de données.
+
+Chaque ligne est un vecteur qui correspond à une description, chaque colonne correspond à un stem.
+
+La fonction \textbf{mots} retourne une liste contenant tous les mots de \textbf{descriptif}, de manière unique. (les mots qui apparaissent plusieurs fois dans \textbf{descriptif} ne sont renvoyés qu'une seule fois dans la liste \textbf{mot}
+
+La fonction tab créé un tableau où les lignes correspondent au nombre d'occurrences de ce mot dans la description de l'objet. La ligne de rang 1 correspond aux occurrences pour le premier objet de la description, la ligne de rang 2 au 2e objet de la description,...
+
+Pour avoir des valeurs normalisées, on transforme ces occurrences en une fréquence : 
+$$f(mot) = \tfrac{nb\quad occurences}{nb\quad mots}$$
+\begin{lstlisting}
+def mots(descriptif):
+    """
+    retourne la liste de tous les mots de descriptif, de manière unique, dans une seule liste
+    """
+    liste_de_mots = []
+    for desc in descriptif:
+        for i in desc : 
+            if not(i in liste_de_mots):
+                liste_de_mots.append(i)
+    return liste_de_mots
+
+def tab(descriptif):
+    """
+    retourne la liste tableau avec les occurences pour chaque article (chaque rang) 
+    des mots retenus (mots)
+    une colonne par mot
+    """
+    tableau = []
+    mots_elements = mots(descriptif)
+    for desc in descriptif:
+        ligne = []
+        nombre_de_mots = len(desc)
+        ligne = [desc.count(mot)/nombre_de_mots for mot in mots_elements]
+        tableau.append(ligne)
+    return tableau
+tableau = tab(descriptif)
+print(tableau)
+
+# visualisation
+df2=pd.DataFrame(tableau,index=col,columns=mots(descriptif))
+df2
+\end{lstlisting}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt]{occurence}
+	\end{center}
+	\caption{Nombre d'occurrences de mot}
+	\label{Nombre d'occurrences de mot}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt]{matrice}
+	\end{center}
+	\caption{Tableau de matrice}
+	\label{Tableau de matrice}
+\end{figure}
+\subsection{Calcul des similarités}
+La dernière étape est celle du calcul des similarités. Cela consiste à appliquer la similarité cosinus 2 à 2 pour tous les produits de la base de données : 
+$$s_{ij}=\tfrac{u_i\cdot u_j}{||ui||\cdot||uj||}$$
+
+\begin{lstlisting}
+import numpy as np
+def cosij(ui,uj):
+    """
+    retourne le resultat du calcul de s_ij pour 2 valeurs ui(i) et uj(j)
+    paramètres :
+    les vecteurs ui et uj de modules mod(ui) et mod(uj)
+    """
+    s=0
+    for i in range(len(ui)):
+        s += ui[i]*uj[i]/(mod(ui)*mod(uj))
+    return s
+
+def mod(u):
+    """
+    calcule le module du vecteur mis en paramètre
+    """
+    s=0
+    for i in range(len(u)):
+        s += u[i]*u[i]
+    s = s**0.5
+    return s
+
+def matrice_cos(A,B):
+    """
+    retourne la matrice de similitude entre 2 listes 
+    de dimension 2 (liste de liste), A et B mises en paramètre
+    """
+    C = np.zeros(shape=(len(A),len(B)))
+    for i in range(len(A)):
+        for j in range(len(B)):
+            C[i,j]=cosij(A[i],B[j])
+    return C
+
+mat=matrice_cos(tableau,tableau)
+mat
+\end{lstlisting}
+
+On cherche alors une règle de similitude, du type : A=>B (si on aime A alors on aurait tendance à aussi apprécier B)
+
+\subparagraph{Visualisation du tableau grâce à son DataFrame}
+\begin{lstlisting}
+df3=pd.DataFrame(mat,index=col,columns=col)
+df3
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt]{similarite}
+	\end{center}
+	\caption{Similarité entre les produits}
+	\label{Similarité entre les produits}
+\end{figure}
+
+\subsection{Visualisation à l'aide d'un outil en couleur}
+\begin{lstlisting}
+import seaborn as sns
+import matplotlib.pyplot as plt
+plt.figure(figsize=(6,6))
+col = list(df3.keys())
+sns.heatmap(mat, square=True, annot=True, cbar=False
+            , xticklabels=list(col)
+            , yticklabels=list(col))
+\end{lstlisting}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=480pt, height=250pt]{matrice_confusion_rec}
+	\end{center}
+	\caption{Visualisation à l'aide d'un outil en couleur}
+	\label{Visualisation à l'aide d'un outil en couleur}
+\end{figure}
+\newpage
+\subsection{Interprétation}
+Nous voyons assez facilement que :
+\begin{itemize}
+	\item la \textbf{bande dessinée} est proche dans sa description avec le \textbf{roman}, avec un score de 0.4, et un peu moins proche de la \textbf{console de jeux} (score de 0.27);
+	\item l'\textbf{ordinateur} est compatible avec la \textbf{console de jeux}, avec un score de 0.5; 
+	\item la description de la \textbf{bande dessinée} et du \textbf{roman} ne contient 
+\end{itemize}
+
+\begin{lstlisting}
+def articles(tab):
+    tab=tab.sort_values(ascending=False)
+    articles = list(tab.index.values)
+    recom = 'l\'article \033[1m {0:15} \033[0;0m est similaire à \033[1m{1:15}\033[0;0m voire peut être un peu à \033[1m{2:15}\033[0;0m'.format(articles[0],articles[1],articles[2])
+    return recom
+def recommandation(dataf):
+    texte=[]
+    col = list(dataf.keys()) 
+    for c in col:
+        tab_red=[]
+        tab_red = dataf[c]
+        texte.append(articles(tab_red))
+    return texte
+
+texte = recommandation(df3)
+for t in texte:
+    print(t)
+\end{lstlisting}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=500pt]{interpretation}
+	\end{center}
+	\caption{Interprétation des résultats}
+	\label{Interprétation des résultats}
+\end{figure}
+
+\section{Conclusion}
+Ce dernier chapitre était dédié à la mise en place de notre application. Il a
+permis de réaliser les principales fonctionnalités implémentées qui sont illustrées par les captures d’écran présentant les principales interfaces.
+
+
+\chapter*{Conclusion générale et perspectives}  \addcontentsline{toc}{chapter}{Conclusion générale et perspectives} 
+	\markboth{Conclusion générale et perspectives}{}
+	
+Nous tirons un bilan très positif de ce stage, qui fut une expérience très enrichissante tant sur le plan professionnel que personnel. Sur le plan professionnel d’abord, nous avons pu appréhender toutes les facettes du métier de \textbf{DataScientiste}, notamment:
+\begin{itemize}
+	\item La récupération des données à travers le Webscraping.
+	\item Le pré-traitement des données. 
+	\item La création des modèles.
+	\item Le test des modèles.
+	\item L'intégration des modèles.
+\end{itemize}
+Nous avons donc rempli les objectifs, à savoir : création et intégration d'un modèle de vision par ordinateur sur le site \textbf{Makityfan} par SchoolUpgrader et  la rectification de certains objectifs qui ont été mal exprimés ou qui sont impossibles à réaliser faute de moyen tel que l'authentification faciale qui nécessite un énorme investissement. Sur le plan personnel ensuite, nous avons pu manipuler: la bibliothèque \textbf{Opencv} pour le traitement des images, les techniques d'augmentation d'images en \textbf{Tensorflow}, les algorithmes de recommandation, les techniques d'intégration des projets d'\textbf{Intelligence Artificielle} à un projet web. Au cours de cette période, comme dans toute phase d’apprentissage, il nous est par ailleurs arrivé de faire quelques erreurs comme : entra\^i{}ner un modèle sur les images de format 64x64x3 et le tester avec les images de 150x150x3, utiliser class\_mode égale à \textbf{binary} au lieu \textbf{categorical}, etc.  Nous avons pu rapidement les corriger en faisant des recherches sur \textbf{stackoverflow} et dans certaines communautés \textbf{discord} dont nous sommes membres. \\
+
+Grâce aux acquis d’une méthodologie de travail forte que l’entreprise \textbf{SchoolUpgrader} nous a transmise, combinée à la formation théorique que nous avons reçue, nous sommes aujourd’hui en mesure de développer des solutions web intégrant des modèles de l'Intélligence Artificielle capables d’accélérer le processus de recherche et d'achat en analysant les habitudes d’achat des clients, d'améliorer les dispositifs de paiement en libre service dans les magasins et de prévenir la fraude et les vols.\\
+\newpage
+En perspective, nous comptons développer un chatbot et l’intégrer à l'application toujours pour la satisfaction des utilisateurs. \\
+
+ Aujourd’hui, après 5 mois passés auprès de M. Khalil Ben Zineb dans l’entreprise \textbf{SchoolUpgrader}, qui évolue dans le développement des solutions Software as a Service (\textbf{SaaS}), nous savons que nous souhaitons plutôt intégrer une structure à taille humaine, plus familiale, afin de travailler sur des projets moins \textbf{cloisonnés} et véritablement transversaux, pour démultiplier notre champ de compétences.
+
+
+\bibliographystyle{acm} % Le style est mis entre accolades.
+\bibliography{reference} % mon fichier de base de données s'appelle reference.bib
+\addcontentsline{toc}{chapter}{Bibliographie et Netographie}
+
+\begin{appendix}
+
+
+\chapter{Annexes} \addcontentsline{toc}{chapter}{Annexes}
+\section{12 pratiques\cite{ref3}}
+Les principes fondamentaux de ce manifeste sont:
+\begin{enumerate}
+  \item Prioriser la satisfaction du client.
+  \item Accepter les changements.
+  \item Livrer en permanence des versions opérationnelles de l’application.
+  \item Assurer le plus souvent possible une coopération entre l’équipe du projet et les gens du métier.
+  \item Construire les projets autour de personnes motivées.
+  \item Favoriser le dialogue direct.
+  \item Mesurer l’avancement du projet en fonction de l’opérationnalité du produit.
+  \item Adopter un rythme constant et soutenable par tous les intervenants du projet.
+  \item Contrôler continuellement l’excellence de la conception et la bonne qualité technique.
+  \item Privilégier la simplicité en évitant le travail inutile.
+  \item Auto-organiser et responsabiliser les équipes.
+  \item Améliorer régulièrement l’efficacité de l’équipe en ajustant son comportement.
+\end{enumerate}
+\newpage
+\section{Exemple de code de Webscraping en Selenium}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{codes_selenium}
+	\end{center}
+	\caption{Code de Webscraping en Selenium}
+	\label{Code de Webscraping en Selenium}
+\end{figure} 
+
+
+\section{Exemple de code de requests et BeautifulSoup}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=350pt, height=200pt]{beautifulsoupp}
+	\end{center}
+	\caption{Exemple de code de BeautifulSoup}
+	\label{Exemple de code de BeautifulSoup}
+\end{figure}
+\newpage
+\section{Architecture d'un Réseau de Convolution Neuronal}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[width=450pt, height=200pt]{cnn1}
+	\end{center}
+	\caption{Architecture d'un Réseau de Convolution Neuronal}
+	\label{Architecture d'un Réseau de Covolution Neuronal}
+\end{figure}  
+
+\end{appendix}
+\end{document}
+
