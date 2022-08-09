@@ -1,0 +1,127 @@
+
+\newenvironment{dedication}
+  {%\clearpage           % we want a new page          %% I commented this
+   \thispagestyle{empty}% no header and footer
+   % some space at the top
+   \itshape             % the text is in italics
+    \Large       % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+  }
+	
+	
+	\onehalfspacing
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\pagestyle{fancy}
+\fancyhead[L]{\nouppercase\leftmark}
+\fancyhead[R]{}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\geometry{headsep=1cm}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
+\newcommand\AtUpperLeftCorner[3]{%
+  \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
+}
+\newcommand\AtUpperRightCorner[3]{%
+  \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
+}
+
+\begin{document}
+%\pagestyle{empty} %%Keine Kopf-/Fusszeilen auf den ersten Seiten.
+\begin{singlespace}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+    \enlargethispage{2cm}
+ 
+    \AddToShipoutPicture{
+       \AtUpperLeftCorner{1.5cm}{2.5cm}{\includegraphics[width=2cm]{./../images/logo_iset_rades}}
+      }
+		\begin{center}
+		\bf
+		\begin{tabular}{c}
+		\small
+		Ministère de l'Enseignement Supérieur et de la Recherche\\
+		Scientifique\\
+		Direction Générale des Etudes Technologiques\\ \\
+		Institut Supérieur des Etudes Technologiques de Radès\\ 
+		Département Technologies de l'Informatique
+		\end{tabular}
+		\end{center}
+		
+		\vspace{2cm}
+			
+		
+ 
+		\begin{center}
+			\bf
+			\Large
+			\vspace{1.5cm}
+			Rapport de
+		\end{center}
+		
+		\begin{center}
+		\bf
+		\huge
+			PROJET DE FIN D'ETUDES
+		\end{center}
+		
+		\begin{center}
+		\bf
+			Présenté en vue de l'obtention du diplôme de
+		\end{center}
+
+		\begin{center}
+		 \bf
+			\large
+			Master Professionnel en Business Intelligence
+		\end{center}
+		
+		\begin{center}
+		  \large
+			\bf
+			Parcours: MPBI \\ 
+			\textbf{Insertion \& Employabilité}
+		\end{center}
+		\begin{center}
+			\bf
+			\vspace{1.5cm}
+			Elaboré par:\\
+			Fedia Ghobghob Hatira
+		\end{center}
+		\begin{center}
+			\bf
+			\vspace{1cm}
+			Encadré par:\\
+			Mme Nesrine Elleuch
+		\end{center}
+		\begin{center}
+			\bf
+			\vspace{1cm}
+			Effectué à:\\
+			Entreprise: ISET Radès \\
+			Encadrant: Mme Nesrine Elleuch
+		\end{center}	
+		\begin{center}
+			\bf
+			\vspace{1cm}
+			Période: Fev - Juin 2022
+		\end{center}	
+		\begin{center}
+			\bf
+			\vspace{2cm}
+			Année Universitaire: 2021/2022
+		\end{center}
+			
+\end{titlepage}
+\ClearShipoutPicture
+
+\end{singlespace}
