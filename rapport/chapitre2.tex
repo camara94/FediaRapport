@@ -1,0 +1,338 @@
+\chapter{Notion Théorique}
+\section{Introduction}
+
+Toutes les entreprises du monde possèdent plus ou moins d'énormes quantités de données. Ces informations proviennent de sources internes (générées par le système d'exploitation dans ses activités quotidiennes) ou de sources externes (web, fichiers plats, etc.)\\
+
+Cette surabondance des données d’une part, et les limites des systèmes opérationnels pour exploiter cette quantité de données à des fins d’analyse d’une autre part, ont conduit et pousser les entreprises à tourner vers une nouvelle ère informatique dite décisionnelle (Business Intelligence).\\
+
+L’informatique décisionnelle, également Business Intelligence ou BI en anglais, désigne les moyens, les méthodes et les outils qui apportent des solutions en vue d’offrir une aide à la décision aux professionnels afin de leurs permettre d’avoir une vue d’ensemble sur l’activité de l’entreprise et de leurs permettre de prendre des décisions plus avisées à travers des tableaux de bord de suivi et des analyses.\\
+
+\section{Les systèmes décisionnels (Business Intelligence)}
+
+La Business Intelligence désigne les moyens, les outils et les méthodes qui permettent de collecter, consolider, modéliser et restituer les données d'une entreprise en vue de fournir une aide à la décision aux managers. \\
+Le terme français est « Informatique Décisionnelle ». Une application de ce genre exécute la capture, l’analyse et le stockage de données provenant de plusieurs sources hétérogènes qui peuvent être des Enterprise Ressource Planning (ERP), des bases de données ou d’autres entrepôts de données. 
+Traditionnellement, un entrepôt de données est utilisé comme source d’information par les décisionnaires. La Business Intelligence s’insère dans l’architecture du système d’information d’une entreprise.\\
+Avec Business Intelligence, nous comprenons les applications Business Intelligence. Cependant, le terme « business intelligence » ne fait pas directement référence à des outils informatiques, mais à ce que l'on fait avec ces outils afin d'effectuer des analyses poussées sur des objets préalablement identifiés. Cette analyse peut être établie pour l'ensemble de l'entreprise, pour un département ou une division spécifique, ou même pour un projet spécifique.\\
+Pour pouvoir obtenir une vue complète des objets analytiques de haut niveau, les applications d'informatique décisionnelle utilisent des entrepôts de données comme sources d'informations. La tâche principale d'un entrepôt de données est de filtrer, recouper et recatégoriser les informations pour fournir un générateur d'analyse de données au niveau mondial. C'est-à-dire des données pertinentes directement liées à l'objet analysé. Dans la plupart des cas, ces données proviennent de bases de données relationnelles. Un entrepôt de données est un clone de données existantes au niveau opérationnel d'une entreprise en préparation de problèmes d'analyse et de performance. Les images des situations de l'entreprise ou les résultats produits par les générateurs d'analyses sont présentés sous forme de rapports statistiques ou sous forme de tableaux de bord décisionnels. Ces informations sont utilisées pour vérifier l’alignement de la stratégie de l’entreprise et assister la direction de l’organisme, d’où le nom d’informatique décisionnelle.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{passageABI}
+	\end{center}
+	\caption{Le passage de l'informatique de production à la l'informatique d\'ecisionnelle}
+	\label{Le passage de l`informatique de production à la l`informatique d\'ecisionnelle}
+\end{figure}
+
+Le passage de l’informatique de production à l’informatique décisionnelle se fait par un Extract Transform Load (ETL). Les sources de données les plus utilisées dans ce genre de transaction sont les bases de données. Les informations contenues dans la source de données sont traitées puis stockées dans un entrepôt de données. Les données gardées dans l’entrepôt de données sont dans l’état de consultation, et sont sujettes à l’analyse multidimensionnelle (OnLine Analytical Processing OLAP). Le résultat produit par l’analyse multidimensionnelle est appelé « cube ». Les cubes d’information sont traités par les générateurs d’analyse pour produire les reports demandés. \cite{ref1}
+
+\subsection{Les avantages d’une solution BI}
+Sans aucun doute, le terme "BI" est devenu l'un des mots à la mode les plus utilisés dans le monde du business. Les nouvelles solutions proposées sont faciles à utiliser avec une interface ergonomique simple. Par contre, la question qu'il faut se poser est : "Est-ce que mon entreprise a vraiment besoin d'une solution BI ?". Si la réponse est oui : "Comment cela affecte-t-il mes décisions au sein de l'entreprise ?".\\
+Voilà les bénéfices apportés couramment, en implémentant une solution BI au sein d’une organisation : 
+\begin{itemize}
+	\item Rapidité de la prise de décision fondée sur des faits.
+    \item Améliorer la visibilité sur les chiffres, les écarts et les anomalies. 
+    \item La combinaison de plusieurs sources de données (ERP, systèmes comptable, feuilles de calcul, des budgets …).
+    \item La présentation uniforme d’informations fiables pour les membres de l’organisation.
+    \item L’automatisation permettant l’accélération de la collecte et de la diffusion de l’information. 
+    \item La performance dans le calcul d’agrégats sur de gros volume de données.
+    \item La prise de décision grâce à des indicateurs pertinents et à une structure cohérente des informations. 
+    \item L’aide à nettoyer les données présentes dans différents logiciels. 
+    \item L’anticipation des événements et la projection dans l’avenir.
+    \item Elaboration des rapports nécessaires au bon moment, à tous les niveaux organisationnels, et dans les meilleurs formats possibles.
+\end{itemize}
+
+
+\subsection{Les domaines d’utilisation de la BI}
+La \textbf{BI} est utilisée dans plusieurs domaines nous citerons :
+\begin{itemize}
+	\item Finance, avec le reporting financiers et budgétaires. 
+    \item Vente et commercial, avec l’analyse de points de vente, l’analyse de la profitabilité.
+    \item Marketing, avec la segmentation clients, les analyses comportementales. 
+    \item Logistique, avec l’optimisation de la gestion de stock, le suivi des livraisons. 
+    \item Ressources humaines, avec l’optimisation de l’allocation des ressources.
+\end{itemize} 
+
+\section{Décisionnel vs transactionnel (OLAP vs OLTP)}
+Les systèmes informatiques peuvent se subdiviser en deux catégories : les systèmes transactionnels OLTP (Online Transaction Processing) et les systèmes analytiques OLAP (OnLine Analytical Processing).
+\begin{itemize}
+	\item Les systèmes OLTP sont dédiés aux métiers de l’entreprise pour les assister dans leurs tâches de gestion quotidiennes et donc directement opérationnels. Le mode de travail est transactionnel. L’objectif est de pouvoir insérer, modifier et interroger rapidement et en sécurité la base. Ces actions doivent pourvoir être effectuées très rapidement par de nombreux utilisateurs simultanément. Il est proposé essentiellement pour les applications gérant des opérations commerciales comme les opérations bancaires, ou l’achat de bien divers. \cite{ref3}
+	\item Les systèmes OLAP sont dédiés au management de l’entreprise pour l’aider au pilotage de l’activité. C’est un outil de reporting dont la couche d’analyse permet de générer des résultats en fonction du contenu d’un entrepôt de données. Les programmes consultent une quantité importante de données pour procéder à des analyses. Les objectifs principaux sont : regrouper, organiser des informations provenant de sources diverses, les intégrer et les stocker pour permettre à l’utilisateur de retrouver et analyser l’information facilement et rapidement. \cite{ref3}
+\end{itemize}
+
+Bien que les systèmes d’informations \textbf{OLTP} et \textbf{OLAP} aient le point commun de regrouper les données de l’entreprise dans un SGBD et d’en fournir l’accès aux utilisateurs, ils présentent de profondes différences, présentées dans ce tableau :
+
+\begin{table}[!h]
+	\centering
+		\begin{tabular}{|p{4cm}|p{6cm}|p{6cm}|}
+        	\hline
+        	\begin{bf}Caractéristiques\end{bf} & \begin{bf}OLTP\end{bf} & \begin{bf}OLAP\end{bf} \\ 
+        	\hline
+        	Utilisation & SGBD base de production & Entrepôt de donnée\\ 
+        	\hline
+         	Opération Typique  & Mise à jour & Analyse \\ 
+        	\hline
+         	Type d’accès & Lecture écriture & Lecture\\ 
+        	\hline
+         	Taille BD & Faible (max quelque GB) & Importante (pouvant aller à plusieurs TB)\\ 
+        	\hline
+         	Requête & Simples, Régulières, Répétitives, Nombreuses & Complexes, Irrégulières, peu nombreuses, non prévisibles\\ 
+        	\hline
+         	Quantité d’informations échangées  & Faible & Important\\ 
+        	\hline
+        	Orientation & Ligne & Multi dimension\\ 
+        	\hline
+        	Structure de données & Beaucoup de tables & Peu de table mais de grande tailles \\ 
+        	\hline
+        	Ancienneté des données & Récente & Historique)\\ 
+        	\hline   	
+		\end{tabular}
+	\caption{Les différences entre OLTP et OLAP}
+	%\label{label_that_can_be_referenced_later}
+\end{table}
+Ces nouvelles exigences des entreprises ont motivé la nécessité de mettre en place un système répondant aux besoins décisionnels. Ce système n’est rien d’autre que le «Data Warehouse».
+
+\section{Data Warehouse}
+
+\subsection{Qu’est Ce qu’un Data Warehouse}
+Un Data Warehouse ou un entrepôt de données est une vision centralisée et universelle de toutes les informations de l'entreprise. C'est une structure (comme une base de données) qui a pour but, contrairement aux bases de données, de regrouper les données de l'entreprise pour des fins analytiques et pour aider à la décision stratégique. Tous les types de Data Warehouse partagent les cinq caractéristiques suivantes : 
+\begin{itemize}
+	\item Données organisées ;
+    \item Données cohérentes ;
+    \item Données évolutives dans le temps (les données sont conservées sur une période plus longue, cela permet la comparaison et le suivi de l’évolution des valeurs dans le temps) ;
+    \item Non volatiles (les données ne peuvent pas être mises à jour, les données sont historisées) ; 
+    \item Structure relationnelle. \cite{ref4}
+\end{itemize}
+
+\subsection{Historique des Data Warehouse}
+Les origines du concept de "datawarehouse" DW (entrepôt de données en français) remontent aux années 1980, période pendant laquelle il y avait un intérêt croissant pour les systèmes décisionnels, principalement en raison de l'avènement du SGBD relationnel simple et puissant fourni par le langage SQL.\\
+Au début, un Data Warehouse n’était rien d’autre qu’une copie des données d’un système opérationnel prise de façon périodique, dédiée à un environnement de support à la prise de décision. Ainsi, les données étaient extraites du système opérationnel, stockées dans une nouvelle base de données « concept d’infocentre ». Le motif principal étant de répondre aux requêtes des décideurs sans affecter les performances des systèmes opérationnels.\\
+Le Data Warehouse, tel qu’on le connaît actuellement, n’est plus vu comme une copie ou un cumul de copies prises de façon périodique des données opérationnel mais une nouvelle source d’information, alimentée avec des données recueillies et consolidées des différentes sources internes et externes. \cite{ref5}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{evolutionDB}
+	\end{center}
+	\caption{Evolution des bases de donn\'ees d\'ecisionnelles}
+	\label{Evolution des bases de données décisionnelles}
+\end{figure}
+Le stockage en entrepôts des données a commencé à la fin des années 1980 lorsque Paul Murphy et Barry Devlin, employés d’IBM, a mis au point le Business Data Warehouse.\\
+Cependant, le vrai concept a été donné par Inmon Bill. Il était considéré comme le père de l’entrepôt de données. Il avait écrit sur une variété de sujets concernant la construction, l’utilisation et l’entretien de l’entrepôt et de l’usine d’information corporative.\\
+\subsection{Mod\'elisation de donn\'ees d’un DW}
+La mod\'elisation dimensionnelle d’un DW s’appuie sur les deux concepts suivants :
+
+\subsubsection{Concepts}
+\begin{itemize}
+	\item \textbf{Concept de fait}: Les tables de fait contiennent les données que l’on souhaite voir dans des rapports d’analyse. Une table de faits se présente sous la forme d’un ensemble de colonnes stockant des valeurs dites mesures, et des clés étrangères (identifiants) qui sont généralement les clés primaires associées aux tables de dimensions.
+	\item \textbf{Concept de dimension}: Les tables de dimension sont les tables qui raccompagnent une table de faits, elles contiennent les descriptions textuelles de l’activité. Une table de dimension est constituée de nombreuses colonnes qui décrivent une ligne. C’est grâce à cette table que l’entrepôt de données peut être compréhensible et utilisable\cite{ref6}.  
+\end{itemize}
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{archEtoileBI}
+	\end{center}
+	\caption{Architecture en \'etoile qui illustre le concept de fait et le concept de dimension}
+	\label{Architecture en \'etoile qui illustre le concept de fait et le concept de dimension}
+\end{figure}
+
+Le tableau suivant résume les différences entre les tables de faits et les tables de dimensions au niveau des données\cite{ref7}:
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{tableFait}
+	\end{center}
+	\caption{Tableau comparatif entre les tables de faits et les tables de dimensions}
+	\label{Tableau comparatif entre les tables de faits et les tables de dimensions}
+\end{figure}
+\subsubsection{Différents modèles de la modélisation dimensionnelle}
+Principalement, les trois modèles, couramment employés pour la modélisation dimensionnelle sont : 
+\textbf{Modèle en étoile}\\
+Ce modèle tire son nom de sa configuration, en effet il se forme d’un objet central qui est la table des faits reliée à un ensemble de tables de dimensions. La force de ce type de modélisation est sa lisibilité et sa performance. Présenté dans le schéma ci-dessous :
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelisationEtoile}
+	\end{center}
+	\caption{Mod\'elisation en \'etoile}
+	\label{Mod\'elisation en \'etoile}
+\end{figure}
+
+\textbf{Modèle en flocon}\\
+Identique au modèle en étoile, sauf que ses branches sont éclatées en hiérarchies. Cette modélisation est généralement justifiée par l’économie d’espace de stockage, cependant elle peut s’avérer moins compréhensible pour l’utilisateur final et très coûteuse en termes de performances.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelFlocons}
+	\end{center}
+	\caption{Mod\'elisation en flocons}
+	\label{Mod\'elisation en flocons}
+\end{figure}
+
+\textbf{Modèle en constellation}\\
+Ce n’est rien d’autre que plusieurs modèles en étoiles liés entre eux par des dimensions en commun.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelConstellation}
+	\end{center}
+	\caption{Modélisation en constellation}
+	\label{Modélisation en constellation}
+\end{figure}
+
+\subsection{Concept OLAP}
+C’est une catégorie de logiciels axés sur l’exploration et l’analyse rapide des données selon une approche multidimensionnelle à plusieurs niveaux d’agrégation. 
+
+Le noyau d’un système OLAP est son serveur. Ces serveurs sont classés en trois architectures systèmes qui peuvent être distinguées comme suit :
+
+\begin{itemize}
+	\item Les systèmes à architecture MOLAP «Multidimentional On-line Analytical Processing» 
+    \item Les systèmes à architecture ROLAP «Relationnel On-line Analytical Processing» 
+    \item Les systèmes à architecture HOLAP «Hybride On-line Analytical Processing\cite{ref7}»\
+\end{itemize}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{comparatifArch}
+	\end{center}
+	\caption{Tableau comparatif des différentes architectures OLAP}
+	\label{Tableau comparatif des différentes architectures OLAP}
+\end{figure}
+
+\subsection{Architecture et composants d’un systême BI}
+Après avoir défini la BI, on va découvrir ses composants et expliquer comment ça fonctionne les uns avec les autres. Le schéma suivant illustre l’architecture et les composants principaux d'un système BI\cite{ref7} :
+
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{archSysBI}
+	\end{center}
+	\caption{vue d'ensemble de l'architecture d'un systeme BI}
+	\label{vue d'ensemble de l'architecture d'un systeme BI}
+\end{figure}
+
+L'architecture présentée dans la figure ci-dessus contient les composants les plus courants trouvés dans la plupart des systèmes de BI, car l'architecture de ses composants peut varier en fonction de l'outil, de l'environnement, etc. Chacun de ces composants seront discutés plus en détail dans les sections qui suivent.
+
+\subsubsection{Sources de données}
+Les sources de données sont souvent diverses et variées on peut citer par exemple : les bases de données relationnelles (MySQL, Oracle, SQL Server), les fichiers plats Excel, XML, les services web… etc. On ne peut pas construire un système BI, sans source de données.
+
+\subsubsection{ETL}
+Les sources de données sont souvent diverses et variées on peut citer par exemple : les bases de données relationnelles (MySQL, Oracle, SQL Server), les fichiers plats Excel, XML, les services web… etc. On ne peut pas construire un système BI, sans source de données.
+
+\subsubsection{Entrepôt de données}
+Considéré comme étant le cœur du système vu son importance, il sert à conserver toutes les données de l’entreprise provenant de ses différents services, dans le but de faciliter l’analyse des données et le Reporting.
+
+\subsubsection{Modèle de données}
+Un Entrepôt de données est conçu pour être la source d'analyse et de rapports, de sorte qu'il soit plus rapide que les systèmes opérationnels pour la production de rapports. Cependant, il n’est pas aussi rapide qu’il prétend, pour pouvoir couvrir tous les besoins, puisque lui-même est une base de données relationnelle qui est définie avec un ensemble de contraintes qui réduisent le temps de réponse d'une requête. L'exigence d'un traitement plus rapide en ayant un temps de réponse plus faible d'une part, et avoir des informations agrégées d’autre part, entraine donc la création d'une autre couche dans les systèmes de BI. Cette couche, appelé Modèle de données, contient un modèle de données basé sur des fichiers ou basé sur la mémoire vive, afin de produire rapidement les réponses aux requêtes pour l’édition des rapports\ref{ref7}.\\
+Le \textbf{Modèle de données} s’appuie sur deux technologies : \textbf{Cube OLAP} et le modèle en mémoire de tableau (\textbf{Modèle tabulaire}).\\
+Le \textbf{Cube OLAP} est un stockage de données basé sur un fichier qui charge les données à partir d'un entrepôt de données dans un modèle de cube. Le cube contient des informations descriptives telles que les dimensions (par exemple, Etudiant et Parcours) et des cellules (par exemple, des faits et des mesures, telles que FactResultat et mesure les Admis).\\
+Le \textdf{Modèle tabulaire} est basé sur un nouveau moteur en mémoire pour les tables. Le moteur en mémoire charge toutes les données rangées de tables dans la mémoire et répond à des questions directement à partir de la mémoire. C'est très rapide en termes de temps de réponse.
+
+\subsubsection{Visualisation de données}
+L'interface d'un système BI\ref{ref7} est la visualisation de données. En d'autres termes, la visualisation de données est la partie du système de BI que les utilisateurs peuvent voir. Il existe différentes méthodes pour la visualisation d'informations, tels que des tableaux de bord stratégiques et tactiques, indicateurs clés de performance ou Key performance Indicators (KPI), des rapports consolidés.\\
+C’est donc la partie qui intéresse le plus les décideurs d’une entreprise. De ce fait, il existe un grand nombre d’outils de visualisation de rapport sur le marché, telle que \textbf{SharePoint}, \textbf{PowerBI}, \textbf{IDashBoards}, etc.
+
+\section{Solutions BI présentes sur le marché}
+De nombreux fournisseurs de solutions BI tentent de convaincre les clients des performances de leurs applications. Cependant, ces solutions de BI peuvent ne pas convenir à différents environnements commerciaux. Dans la liste ci-dessous, vous pouvez voir les principaux fournisseurs de BI sur le marché. Destinés principalement aux entreprises et aux sociétés, ces produits comprennent une suite complète d'applications, de bases de données, d'outils d'intégration et de visualisation.
+\begin{itemize}
+	\item IBM Cognost 
+    \item SAP Business Objects
+    \item Pantaho BI 
+    \item SpagoBI 
+    \item JasperSoft 
+    \item SAS BI 
+    \item Oracle BI
+    \item Microsoft BI
+\end{itemize}
+
+\subsection{Environnement logiciel choisi}
+Pour aboutir notre projet, nous avons dû employer un certain nombre d’outils et logiciels :
+\begin{itemize}
+	\item  \textbf{Microsoft Business Intelligence} :\\
+Microsoft a montré un intérêt marqué pour la prise de décision ces dernières années, l'entreprise ciblant un segment significatif du marché, et avec les solutions qu'il propose, on peut dire qu'il est trajectoire correcte. La plate-forme Microsoft est livrée avec une variété d'outils qui vous permettent d'effectuer des performances élevées tout au long du processus décisionnel. Nous citons :
+	\begin{itemize}
+		\item SQL Server Intégration services (SSIS) ;
+        \item SQL Server Analysis Services (SSAS) ;
+        \item Microsoft Power BI
+	\end{itemize}
+	\item  \textbf{Système de gestion de base de données} :\\
+SQL Server Management Studio (SSMS) est un outil pour accéder, configurer, Administration, administration et développement de tous les composants de SQL Server. Associés SSMS Un ensemble d'outils graphiques pour habiliter les développeurs avec un puissant éditeur de scripts et les administrateurs de tous les niveaux peuvent accéder à SQL Server.
+   \begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{sqlserver}
+		\end{center}
+		\caption{SQL Server logo}
+		\label{SQL Server logo}
+   \end{figure}
+   \item \textbf{SSDT pour Visual Studio 2017}: \\
+   \begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{ssdt}
+		\end{center}
+		\caption{Visual Studio logo}
+		\label{Visual Studio logo}
+   \end{figure}
+   SSDT est l’abréviation de Microsoft SQL Server Data Tools, c’est un outil de développement moderne et un complément à Visual Studio qui permet de développer un projet BI complet avec ces différentes phases.\\
+Avec SSDt nous allons utiliser SQL Server Integration Services (SSIS) comme une solution d’intégration et de transformation des données et SQL Server Analysis Services (SSAS) comme une solution d’analyse des données.
+\item \textbf{Power BI Desktop}: \\
+ Power BI, Business Intelligence développée par Microsoft, est une suite d’outils d’informatique décisionnelle intégrée à Microsoft Office 365 pour :
+ \begin{itemize}
+ 	\item Traiter, analyser des données, provenant de multiples sources,
+    \item Les transformer en informations exploitables, c.-à-d. les visualiser sous forme de rapports et tableaux de bord interactifs, en fonction de vos besoins descriptifs ou prédictifs,
+    \item Les partager avec les équipes concernées, grâce à Office 365,
+    \item Prendre des décisions tactiques ou stratégiques. \cite{ref10}
+    \begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{logoBI}
+		\end{center}
+		\caption{Power BI Desktop logo}
+		\label{Power BI Desktop logo}
+   \end{figure}
+ \end{itemize}
+\end{itemize}
+
+\section{Démarches et Méthodologies}
+L’informatique décisionnelle est tout un concept, qui touche non seulement au côté technologique mais il met en valeur aussi l’importance du choix d’une méthodologie de travail. Le choix d’une méthodologie adaptée à la société est indispensable pour la réussite du projet. Il faut notamment prendre en compte la vitesse d’évolution des besoins et des priorités.\\
+
+Bien que chaque projet de Business Intelligence (informatique décisionnelle) ou BI soit unique et réponde à des particularités techniques et processus d'exécution distincts, il est possible de définir quelques étapes ou phases d'un projet de BI, ainsi qu'une série de caractéristiques communes dans presque tous les cas.
+
+\begin{itemize}
+	\item \textbf{Étape 1. Définition des objectifs et besoins}\\
+	Il s'agit là d'une phase essentielle du processus et elle se caractérise par la précision, car, outre la définition des besoins et objectifs, il faut déterminer quelles décisions concrètes doivent être prises, quel type d'informations est nécessaire et sur quelles variables l'analyse se basera-t-elle\cite{ref8}.
+	\item \textbf{Étape 2. Choix de la méthodologie}\\
+	Toujours en fonction des objectifs et besoins du projet, il faut ensuite choisir la méthodologie concrète et les outils de BI à utiliser, ce qui implique aussi la formation et mise en place des équipes de travail\cite{ref8}.
+	\item \textbf{Étape 3. Mise en place du programme de travail}\\
+	Il convient de définir, de manière détaillée, précise et claire, toutes les actions à réaliser, ainsi que l’infrastructure et les ressources nécessaires pour englober la méthodologie d'analyse de données choisie ainsi que les délais d'exécution du projet de Business Intelligence\cite{ref8}.
+	\item \textbf{Étape 4. Actions de présentation}\\
+	L'étape suivante consiste à élaborer et présenter des rapports, reports, tableaux de bord, diagrammes de flux et infographies, de façon très visuelle, claire et schématique, afin de faciliter le travail des professionnels chargés de prendre des décisions\ref{ref8}.
+	\item \textbf{Étape 5. Exécution du système, formation et de support}\\
+	L'exécution d'un processus de Business Intelligence ne sera utile que si les informations, correctement analysées, arrivent aux personnes ayant la capacité de décider dans le support et avec les outils adéquats\cite{ref8}.
+\end{itemize}
+
+\subsection{Méthodologie de travail}
+Pour réaliser et réussir un projet, il est important de suivre une méthodologie adaptée. Il s'agit d'un outil qui vous aide à accomplir votre projet étape par étape, de la planification à la mise en œuvre, dans un souci d'efficacité et rentabilité\cite{ref9}.\\
+Il existe de nombreuses approches de la gestion de projet et faire le bon choix n'est pas toujours facile car il n'y a pas d'approche unique pour un projet, une entreprise ou une industrie. Une méthode fonctionne pour une situation mais pas pour une autre, et parfois vous devez combiner différents éléments de plusieurs méthodes pour créer la vôtre\\.
+Choisir la bonne méthodologie de gestion de projet est donc une étape indispensable pour réussir votre projet. Optez pour une méthode qui valorise les objectifs de votre projet et les points forts de votre équipe. Vous pouvez également créer une méthodologie hybride qui assemble des éléments de différentes méthodologies. Traditionnelle, agile ou autres, l'essentiel est que vous et votre équipe trouviez la méthode de travail qui vous convienne le mieux.\\
+
+\subsection{Approches de modélisation BI Adopté}
+Pour faire une  conception d'entrepôt de données (DWH), deux des approches d'entrepôt de données les plus largement discutées et expliquées sont les méthodologies Inmon et Kimball. Pendant des années, les gens ont débattu de l'approche d'entrepôt de données la meilleure et la plus efficace pour les entreprises. Cependant, il n'y a toujours pas de réponse définitive car les deux méthodes ont leurs avantages et leurs inconvénients.
+
+\subsubsection{Inmon : de l’entrepôt aux magasins}
+Dans les années 1990, William Inmon propose une vision descendante de la structuration de la donnée de l’entreprise, dite ``top-down``.\\
+
+L’entrepôt de donnée a pour rôle de rassembler toutes les données de l’entreprise, et les magasins de données sont alors des sous-parties issues de cet entrepôt.
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{topDown}
+	\end{center}
+	\caption{L’approche top-down}
+	\label{L’approche top-down}
+\end{figure}
+\subsubsection{Kimball : des magasins à l’entrepôt}
+Ralph Kimball propose une vision radicalement différente, ascendante, de la structuration de la donnée, dite ``bottom-up``.\\
+Les besoins de l’entreprise sont modélisés dans les magasins de données, l’entrepôt de données n’est par la suite qu’une simple union de ses magasins de données.
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{bottomUp}
+	\end{center}
+	\caption{Approche bottom\-up}
+	\label{Approche bottom\-up}
+\end{figure}
+
+D’après le cycle de vie de notre projet on a utilisé l’approche de Ralph KIMBALL qui nous permet de mettre en place une conception appuyée sur des phases de fonctionnement clairement établies et des points de vérification prédéfinis, avec un avantage du schéma en étoile est que la plupart des opérateurs de données peuvent facilement le comprendre en raison de sa structure dénormalisée, ce qui simplifie les requêtes et l'analyse.
+
+\section{Conclusion}
+Dans ce chapitre, j’ai commencé par une présentation des concepts de base des systèmes décisionnels (BI) et leurs divergences avec les systèmes transactionnels. Par la suite, on a détaillé l’architecture globale d’un cycle BI et en particulier ses différents composants. Puis on s’est intéressé aux différentes solutions BI présentes dans le marché. Pour en conclure, j’ai présenté les deux méthodologies celle de  Inmon et l’autre de Kimball (utilisé vu les moyens, la cible et la durée de notre stage).
