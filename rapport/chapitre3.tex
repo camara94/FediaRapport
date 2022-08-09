@@ -1,0 +1,194 @@
+\chapter{Conception et Développement de l’ETL}
+\section{Introduction}
+L’étude de l’existant nous a permis de déceler les objectifs et les attentes de l’ISET et elle nous a fourni une vision claire de ce que nous allons aborder dans ce troisième chapitre. Dans ce chapitre, on va exposer l’architecture sur laquelle sera fondé notre système ce qui nous permettra de réaliser respectivement la modélisation, la conception et finalement l’implémentation du Data Warehouse.\\
+Les étapes de l'entrepôt de données doivent être conçues de manière que les bonnes informations soient facilement accessibles au bon moment. L'architecture choisie est représentée par un modèle logique sous forme de 4 couches.
+
+\begin{itemize}
+	\item Couche source de données;
+    \item Couche de préparation de données (Data StagingDataSource);
+    \item Couche de stockage de données (DWH);
+    \item Couche de présentation et restitution de données;
+\end{itemize}
+
+On va détailler ces 4 couches selon notre sujet comme suit :
+
+\section{Couche source de données}
+Cette couche représente les différentes sources de données dans différents formats du système d'exploitation qui sont prêtes à être introduites dans l'entrepôt de données. Dans notre cas (sous forme de fichiers Excel)\\
+Pour réaliser cette étape, il a fallu extraire les relations existantes entre les tables des bases de données, pour cela j’ai utilisé l’outils : MySQL Workbench pour faire les liaisons entre les tables et fournir une base de données plus au moins claire qui nous a donné le diagramme suivant :
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelRelationnel}
+	\end{center}
+	\caption{Modèle Relationnel de la Base de données Partie relation entre les tables}
+	\label{Modèle Relationnel de la Base de données Partie relation entre les tables}
+\end{figure}
+
+\section{Couche de préparation de données (StagingDataSource)}
+Cette couche est la couche de préparation des données (Data Staging), principalement pour une extraction rapide de Données provenant de sources d'information. Après avoir chargé les données Dans StagingDataSource, l'étape de transformation entre en jeux (suppression redondance des données, filtrage des données erronées) et Validez les données avant de les transférer vers DWH.\\
+On peut nommer cette couche par la partie \begin{bf}ETL\end{bf} (Extract-Tansform-LOAD).\\
+
+\subsubsection{Extract: Extraction de données brutes}
+La première étape et la préparation de la base de données Staging avec la création de la table \begin{bf}audit_logs\end{bf} et les \begin{bf}fonctions\end{bf}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{auditLogs}
+	\end{center}
+	\caption{Préparation au Staging}
+	\label{Préparation au Staging}
+\end{figure}
+
+\begin{itemize}
+	\item \begin{bf}Audit_logs\end{bf} appelé aussi journal d’audit est essentiellement un enregistrement des événements et des modifications. Il nous permet de noter tous les changements au sein de notre travail, fournissant un historique complet des opérations réalisé. 
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{operation1}
+		\end{center}
+		\caption{affichage de l’historique des opérations}
+		\label{affichage de l’historique des opérations}
+	\end{figure}
+	
+	\item \begin{bf}Les fonctions\end{bf} sont créées pour nous aider dans la phase de nettoyage et transformation des données.
+	\newpage
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{creationFonction}
+		\end{center}
+		\caption{création des fonctions}
+		\label{création des fonctions}
+	\end{figure}
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[width=450pt,height=250pt]{creationdbo}
+		\end{center}
+		\caption{création dbo.fnFormatMatricule}
+		\label{création dbo.fnFormatMatricule}
+	\end{figure}
+	\newpage
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[width=390pt, height=290pt]{chargementTable}
+		\end{center}
+		\caption{Chargement de la table ImportEtudiant}
+		\label{Chargement de la table ImportEtudiant}
+	\end{figure}
+	
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{chargementTable2}
+		\end{center}
+		\caption{Chargement de la table ImportResultat}
+		\label{Chargement de la table ImportResultat}
+	\end{figure}
+	\newpage
+	\begin{figure}[!h]
+		\begin{center}
+			\includegraphics[]{importFichier}
+		\end{center}
+		\caption{Modèle Relationnel de la Base de données Partie ImportFichier}
+		\label{Modèle Relationnel de la Base de données Partie ImportFichier}
+	\end{figure}
+	
+	Le modèle ci-dessus est le résultat du processus d’import des fichiers Excel qui sont transformé en format CSV importé de SALIMA et du logiciel conçus pour les étudiants de mastère et un autre fichier Excel pour les conventions. Ce modèle se compose de 7 tables différentes, qui sont : 
+	\begin{itemize}
+		\item \begin{bf}Table ImportMaster\end{bf}: Contient les différentes informations sur un étudiants mastère (cin, numéro inscription, genre, nom prénom, année, niveau, parcours,etc);
+		\item \begin{bf}Table ImportMasterResultat\end{bf}: Contient les différentes informations concernant résultat Mastère (groupe, cin, numéro inscription, moyenne, crédit, observation, année, niveau, parcours, situation);
+		\item \begin{bf}Table ImportEtudiant\end{bf}: Contient les différentes informations concernant tous les étudiants ( cin, numéro inscription, nom, prénom, émail, statut, état, année, semestre, parcours,…etc);
+		\item \begin{bf}Table ImportGroupe\end{bf}: Contient les différents groupes existant à l’ISET( nom groupe, type, capacité, parcours, semestre, année);
+		\item \begin{bf}Table ImportResultat\end{bf}: Contient les différentes informations concernant résultat des étudiants( cin, numéro inscription, nom, prénom, moyenne général, observation, mention, année,…etc);
+		\item \begin{bf}Table ImportConvention\end{bf}: Contient les différentes informations concernant les conventions( nom société, thème convention, type convention, date début, date fin, nombre participant);
+		\item \begin{bf}Table ImportParcours\end{bf}: Contient les différentes informations concernant les parcours existants( domaine, spécialité, département, diplôme);
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Tansform : Transformation, homogénéisation et nettoyage de ces données}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{transformationEtNettoyage}
+	\end{center}
+	\caption{Transformation et nettoyages de données pour la création de la table Etudiants}
+	\label{Transformation et nettoyages de données pour la création de la table Etudiants}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{transformationEtNettoyage2}
+	\end{center}
+	\caption{Transformation et nettoyages de données pour la création de la table Resultat}
+	\label{Transformation et nettoyages de données pour la création de la table Resultat}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{transformationEtNettoyage3}
+	\end{center}
+	\caption{Transformation et nettoyages de données pour la création de la table Inscription}
+	\label{Transformation et nettoyages de données pour la création de la table Inscription}
+\end{figure}
+
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelRelationnelEtudiant}
+	\end{center}
+	\caption{Modèle Relationnel de la Base de données Partie Etudiant}
+	\label{Modèle Relationnel de la Base de données Partie Etudiant}
+\end{figure}
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelRelationnelConevntion}
+	\end{center}
+	\caption{Modèle Relationnel de la Base de données Partie Convention}
+	\label{Modèle Relationnel de la Base de données Partie Convention}
+\end{figure}
+
+Ces 2 modèles ci-dessus est le résultat de la transformation des données à partir des tables (\begin{bf}Table ImportMaster, Table ImportMasterResultat, Table ImportEtudiant, Table ImportGroupe , Table ImportResultat, Table ImportConvention, Table ImportParcours\end{bf}). Ce modèle se compose de 20 tables différentes, qui sont : 
+
+\begin{itemize}
+	\item Table Etudiant.
+    \item Table Inscription.
+    \item Table Parcours.
+    \item Table Nature Bac.
+    \item Table Genre.
+    \item Table Gouvernorat.
+    \item Table Inscription Etat.
+    \item Table Inscription Statut.
+    \item Table Groupe.
+    \item Table Résultat.
+    \item Table Département.
+    \item Table Résultat Mention.
+    \item Table parcours Diplôme.
+    \item Table parcours Spécialité.
+    \item Table parcours Département.
+    \item Table parcours Domaine.
+    \item Table convention.
+    \item Table Convention Type.
+    \item Table Convention Thème.
+    \item Table Convention Partenaire.
+\end{itemize}
+
+\section{Couche de stockage de données (DWH)}
+C’est la couche de l’alimentation de l’entrepôt de données (DWH) pour stocker des informations analytiques et historiques qui seront utilisées.\\
+Après la transformation et le nettoyage des données et les stocker dans notre Staging on passe maintenant à l’alimentation des tables de fait et dimension et on a obtenu ce diagramme :
+
+\begin{figure}[!h]
+	\begin{center}
+		\includegraphics[]{modelEtoile}
+	\end{center}
+	\caption{Modèle en étoile (DWH)}
+	\label{Modèle en étoile (DWH)}
+\end{figure}
+
+\section{Couche de présentation et restitution de données}
+Cette couche fait référence aux informations qui parviennent à l'utilisateur final, telles que les rapports, grâce à cette couche, l'utilisateur pourra : 
+\begin{itemize}
+	\item Analyser les données, notamment avec les outils de type OLAP pour les analyses multidimensionnelles
+    \item Aide à la décision des décideurs en situation avec les tableaux de bord présentant les indicateurs clés de l'activité
+    \item Transmettre l’efficacité avec le Reporting.
+\end{itemize}
+Cette partie seras plus détaillé dans le chapitre 4
