@@ -1,0 +1,35 @@
+\babel@toc {french}{}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Cycle de vie d\IeC {\textquoteright }un projet decisionnel selon RALPH KIMBALL\relax }}{10}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Diagramme de Gant\relax }}{12}{figure.caption.7}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Le passage de l'informatique de production \`a la l'informatique d\'ecisionnelle\relax }}{14}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Evolution des bases de donn\'ees d\'ecisionnelles\relax }}{18}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Architecture en \'etoile qui illustre le concept de fait et le concept de dimension\relax }}{19}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Tableau comparatif entre les tables de faits et les tables de dimensions\relax }}{19}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Mod\'elisation en \'etoile\relax }}{20}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Mod\'elisation en flocons\relax }}{20}{figure.caption.14}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Mod\'elisation en constellation\relax }}{21}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Tableau comparatif des diff\'erentes architectures OLAP\relax }}{22}{figure.caption.16}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces vue d'ensemble de l'architecture d'un systeme BI\relax }}{22}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces SQL Server logo\relax }}{25}{figure.caption.18}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Visual Studio logo\relax }}{25}{figure.caption.19}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Power BI Desktop logo\relax }}{25}{figure.caption.20}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces L\IeC {\textquoteright }approche top-down\relax }}{28}{figure.caption.21}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Approche bottom\-up\relax }}{28}{figure.caption.22}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Mod\`ele Relationnel de la Base de donn\'ees Partie relation entre les tables\relax }}{30}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Pr\'eparation au Staging\relax }}{31}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces affichage de l\IeC {\textquoteright }historique des op\'erations\relax }}{31}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces cr\'eation des fonctions\relax }}{32}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces cr\'eation dbo.fnFormatMatricule\relax }}{32}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Chargement de la table ImportEtudiant\relax }}{33}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Chargement de la table ImportResultat\relax }}{33}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Mod\`ele Relationnel de la Base de donn\'ees Partie ImportFichier\relax }}{34}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Transformation et nettoyages de donn\'ees pour la cr\'eation de la table Etudiants\relax }}{35}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Transformation et nettoyages de donn\'ees pour la cr\'eation de la table Resultat\relax }}{35}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Transformation et nettoyages de donn\'ees pour la cr\'eation de la table Inscription\relax }}{36}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Mod\`ele Relationnel de la Base de donn\'ees Partie Etudiant\relax }}{36}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Mod\`ele Relationnel de la Base de donn\'ees Partie Convention\relax }}{37}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Mod\`ele en \'etoile (DWH)\relax }}{38}{figure.caption.36}%
+\addvspace {10\p@ }
